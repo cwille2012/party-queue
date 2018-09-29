@@ -1,0 +1,10 @@
+.home {
+    position: fixed; top: 38px; left: 0; right: 0; width: 100%; height: 100%; margin: auto; padding: 0;
+    max-width: 410px; min-width: 285px;
+    overflow: hidden;
+}
+.homeholder { position: absolute; top: 0; bottom: 80px; width: 96%; margin: 2%; background-color: white; }
+.homeholder h2 { margin-top: 40px; margin-bottom: 20px; text-align: center; font-size: 36px; font-weight: 320; }
+.buttonholder { position: relative; top: 10%; text-align: center; }
+.homebutton { left: 0; right: 0; width: 150px; height: 45px; margin-left: auto; margin-right: auto; margin-top: 10%; display: block; border: 1px outset black; cursor: pointer; outline: 0; }
+.homebutton:hover { background-color: #ddd; }
