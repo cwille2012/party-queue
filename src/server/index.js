@@ -21,6 +21,7 @@
 
 //Initilize Server
 const path = require('path');
+const request = require('request');
 const express = require('express');
 const app = express();
 
@@ -211,7 +212,15 @@ app.get(
     
     var playlistId;
 
-    console.log(authorizationCode)
+    
+
+request.get('https://someplace',options,function(err,res,body){
+  if(err) //TODO: handle err
+  if(res.statusCode !== 200 ) //etc
+  //TODO Do something with response
+});
+
+    //res.redirect(authorizationCode);
     
     // First retrieve an access token
     spotifyApi
@@ -286,6 +295,7 @@ function generateAuthCode(scopes) {
   return(spotifyApi.createAuthorizeURL(scopes, state));
   //(example response) https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
   //(my response) https://accounts.spotify.com/authorize?client_id=9aa40bea0e1e40f4973294a79434da4b&response_type=code&redirect_uri=http://partyqueso.com&scope=playlist-modify-public&state=some-state-of-my-choice
+  // gave response code= AQCJD3V0cjcs2y6UkZYGCss1Vy9wgNQDg30CnHhd3hNXFaraDIZBlJXxMlqusxR0HiotXK7CSayn_arTwGDLP4VZzPC6PqPh9FK6lsGifwtdUc3xTS9rg8qn4EeOGe66Dku29HyNI9EevO00fJFvK1nbay2N0c7Js42RHIL4E8aOIqGoztsI03CDyL6Llz64fmZt1xLfVM47P1vFGCRl-on4hB6G
 }
 
 
