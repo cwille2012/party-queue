@@ -37,7 +37,6 @@ class Root extends Component {
       sessionID: '',
       sessionPass: ''
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
