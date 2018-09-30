@@ -66,6 +66,7 @@
     margin-top: 20px;
     margin-left: 5%;
     width: 45%;
+    float: right;
   }
   
   /** Progress **/
@@ -93,6 +94,7 @@
   }
   
   .main-wrapper {
+    margin-top: 100px;
     position: fixed; 
     top: 35%; 
     left: 50%; 
