@@ -39,6 +39,10 @@ class Join extends React.Component {
     }
   }
 
+  joinParty() {
+    
+  }
+
   render() {
     var {viewport} = this.props;
     var {user} = this.state;

@@ -20,7 +20,6 @@ import NotFound from './Components/NotFound';
 
 var mainStyle = require('./styles/main.css');
 var loginStyle = require('./styles/login.css');
-console.log('app')
 let appId = 'partyqueue-vdayw';
 let redirectUrl = 'http://partyqueso.com/callback';
 const client = Stitch.initializeDefaultAppClient(appId);
@@ -120,7 +119,7 @@ class Root extends Component {
     } else if (request == 'join' && loggedIn === true) {
       page = (<Join viewport={viewport} client={client} user={user} />);
     } else if (request == 'spotify' && loggedIn === true) {
-      page = (<Spotify viewport={viewport} client={client} user={user} />);
+      page = (<Spotify viewport={viewport} client={client} user={user} spotify={this.props.spotify || null} />);
     } else if (request.includes('callback')) {
       page = (<Authorize viewport={viewport} client={client} Stitch={Stitch} />);
     } else {

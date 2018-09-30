@@ -24,20 +24,20 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-// const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 // var ObjectId = require('mongodb').ObjectID;
 
 var callbackUrl = 'http://partyqueso.com';
 
-// let postCollection;
-// MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass').then(db => {
-//   console.log('Connected to mongodb');
-//   postCollection = db.collection('posts');
-// }).catch(err => {
-//   console.log('Error connecting to mongodb!');
-//   console.log(err);
-//   process.exit(1);
-// });
+let userCollection;
+MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass').then(db => {
+  console.log('Connected to mongodb');
+  userCollection = db.collection('users');
+}).catch(err => {
+  console.log('Error connecting to mongodb!');
+  console.log(err);
+  process.exit(1);
+});
 
 //Custom Middleware
 app.use(function (req, res, next) {
@@ -67,6 +67,10 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  if (req.headers.cookie && req.headers.cookie.includes('owner_id=')) {
+    var owner_id = req.headers.cookie.split('owner_id=')[1];
+    console.log(owner_id)
+  }
   next();
 });
 
@@ -122,7 +126,9 @@ app.get(
   '/spotify',
   function(req, res, next) {
     if (spotifyAccount) {
-      res.spotify = spotifyAccount;;
+      console.log(req)
+      //userCollection.updateOne({ owner_id: client.auth.user.id }, { $set: { user: result, token: client.auth.authInfo.accessToken } }, { upsert: true });
+      res.spotify = spotifyAccount;
       next();
     } else {
       res.redirect('/host');
