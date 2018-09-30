@@ -131,7 +131,7 @@ class Spotify extends React.Component {
     if (this.state.partyDisplay == true) {
 
       var songList = (
-        <div class="limiter">
+        <div class="limiter" style={{spotifyStyle}}>
           <div class="container-table100">
             <div class="wrap-table100">
               <div class="table100 ver1">
