@@ -12,6 +12,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Home from './Components/Home';
 import Account from './Components/Account';
+import Host from './Components/Host';
 import Authorize from './Components/Authorize';
 import Join from './Components/Join';
 import Spotify from './Components/Spotify';
@@ -112,9 +113,11 @@ class Root extends Component {
       page = (<Home viewport={viewport} client={client} />)
     } else if (request == 'account' && loggedIn === true) { 
       page = (<Account viewport={viewport} client={client} user={user} />);
-    } else if ((request == 'join' || request == 'host') && loggedIn === true) {
+    } else if (request == 'join' && loggedIn === true) {
       page = (<Join viewport={viewport} client={client} user={user} />);
-    } else if (request == 'spotify' && loggedIn === true) {
+    } else if (request == 'host' && loggedIn === true) {
+      page = (<Host viewport={viewport} client={client} user={user} />);
+    }else if (request == 'spotify' && loggedIn === true) {
       page = (<Spotify viewport={viewport} client={client} user={user} spotify={this.props.spotify || null} />);
     } else if (request.includes('callback')) {
       page = (<Authorize viewport={viewport} client={client} Stitch={Stitch} />);
