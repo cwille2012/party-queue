@@ -66,7 +66,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   if (req.headers.cookie && req.headers.cookie.includes('owner_id=')) {
     var owner_id = req.headers.cookie.split('owner_id=')[1];
-    console.log(owner_id)
     req.owner_id = owner_id;
   }
   if (req.headers.cookie && req.headers.cookie.includes('spotify_id=')) {
@@ -105,11 +104,7 @@ passport.use(
         spotifyUserId: profile.id,
         spotifyAccessToken: accessToken
       };
-      console.log(profile)
       return done(null, profile);
-      // User.findOrCreate({ spotifyId: profile.id }, function(err, user) {
-      //   return done(err, user);
-      // });
     }
   )
 );
@@ -124,10 +119,7 @@ app.get(
   passport.authenticate('spotify', { failureRedirect: '/host' }),
   function(req, res) {
     if (spotifyAccount) {
-      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true });
-      // .then(result => {
-      //   next();
-      // });
+      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotifyUserId: spotifyAccount.spotifyUserId, spotifyAccessToken: spotifyAccount.spotifyAccessToken } }, { upsert: true });
     }
     res.redirect('/spotify');
   }
@@ -137,10 +129,6 @@ app.get(
   '/spotify',
   function(req, res, next) {
     if (spotifyAccount) {
-      // userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true })
-      // .then(result => {
-      //   next();
-      // });
       next();
     } else {
       res.redirect('/host');
