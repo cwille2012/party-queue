@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SpotifyPlayer from 'spotify-player';
+
 var spotifyStyle = require('../styles/spotify.css');
 //require('./spotify-player')
 
