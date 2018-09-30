@@ -14,10 +14,6 @@
     font-size: 3vmin;
   }
   
-  .hidden {
-    display: none;
-  }
-  
   /** Buttons **/
   .btn {
     background-color: transparent;
