@@ -28,6 +28,7 @@ class Spotify extends React.Component {
 
     this.state.spotifyPlayer.on('update', response => {
       console.log('updating')
+      console.log(response.progress_ms)
       this.state.mainContainer = (
         <div style={spotifyStyle}>
         <div className="main-wrapper" style={{height:'100%'}}>
