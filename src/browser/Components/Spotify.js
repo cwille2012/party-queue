@@ -315,11 +315,12 @@ class Spotify extends React.Component {
 
     var sessionTable = null;
     if(!!this.state.session) {
-      var sessionValues = Object.keys(this.state.session).map(function(key) {
+      var song = this.state.session
+      var sessionValues = Object.keys(song).map(function(key) {
         return (
           <tr key={key}>
             <th>{key}</th>
-            <td>{this.state.session[key]}</td>
+            <td>{song[key]}</td>
           </tr>
         );
       });
