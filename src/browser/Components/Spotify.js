@@ -1,6 +1,6 @@
 import React from 'react';
 
-var spotifyStyle = require('./styles/spotify.css');
+var spotifyStyle = require('../styles/spotify.css');
 
 class Spotify extends React.Component {
   constructor(props) {
