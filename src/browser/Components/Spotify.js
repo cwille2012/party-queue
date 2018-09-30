@@ -49,6 +49,10 @@ class Spotify extends React.Component {
     
     this.state.spotifyPlayer.init();
   }
+
+  getHistory() {
+    console.log(this.state.spotifyPlayer.history())
+  }
   
 
   render() {
@@ -96,6 +100,7 @@ class Spotify extends React.Component {
       <div className="container" style={spotifyStyle}>
         {loginContainer}
         {songContainer}
+        <input type="button" className="btn btn--login" value="Get History" onClick={this.getHistory} />
       </div>
     );
     

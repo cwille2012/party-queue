@@ -30,6 +30,10 @@ class SpotifyPlayer {
     });
   }
 
+  history() {
+    return fetchHistory();
+  }
+
   fetchToken() {
     this.obtainingToken = true;
     return fetch(`${this.exchangeHost}/token`, {
@@ -165,6 +169,10 @@ class SpotifyPlayer {
 
   fetchUser() {
     return this.fetchGeneric('https://api.spotify.com/v1/me').then(data => data.json());
+  }
+
+  fetchHistory() {
+    return this.fetchGeneric('https://api.spotify.com/v1/me/player/recently-played').then(data => data.json());
   }
 }
 
