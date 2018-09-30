@@ -1,9 +1,10 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlayCircle, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 import SpotifyPlayer from './spotify-player.js';
 
 var spotifyStyle = require('../styles/spotify.css');
-//var SpotifyPlayer = require('./spotify-player.js')
 
 class Spotify extends React.Component {
   constructor(props) {
@@ -98,6 +99,8 @@ class Spotify extends React.Component {
         {songContainer}
         <button className="control-button spoticon-play-16 control-button--circled" title="Play"></button>
         <button className="control-button spoticon-skip-forward-16" title="Next"></button>
+        <FontAwesomeIcon icon={faCoffee} />
+        <FontAwesomeIcon icon={faArrowAltCircleRight} />
       </div>
     );
     
