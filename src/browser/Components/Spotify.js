@@ -62,11 +62,11 @@ class Spotify extends React.Component {
 
   componentDidMount() {
     if (!this.state.spotifyUser){
-      // if (!!document.getElementById('js-btn-login'))
-      // document.getElementById('js-btn-login').addEventListener('click', () => {
-      //   this.state.spotifyPlayer.login();
-      // });
-      this.state.spotifyPlayer.login();
+      if (!!document.getElementById('js-btn-login'))
+      document.getElementById('js-btn-login').addEventListener('click', () => {
+        this.state.spotifyPlayer.login();
+      });
+      //this.state.spotifyPlayer.login();
     }
 
     'http://api.partyqueso.com/party/<partyid>/queue'
