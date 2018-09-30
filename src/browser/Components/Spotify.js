@@ -76,6 +76,10 @@ class Spotify extends React.Component {
               <div className="progress">
                 <div className="progress__bar" style={{width: String(Number((songDetails.progress_ms * 100) / songDetails.item.duration_ms)+'%')}}></div>
               </div>
+              <div className="icon-holder">
+                <FontAwesomeIcon icon={faPlayCircle} style={{fontSize:'85px'}} />
+                <FontAwesomeIcon icon={faArrowAltCircleRight} style={{fontSize:'85px'}} />
+              </div>
             </div>
           </div>
           <div className="background" style={{backgroundImage: String(songDetails.item.album.images[0].url)}}></div>
@@ -97,8 +101,6 @@ class Spotify extends React.Component {
       <div className="container" style={spotifyStyle}>
         {loginContainer}
         {songContainer}
-        <FontAwesomeIcon icon={faPlayCircle} style={{fontSize:'85px'}} />
-        <FontAwesomeIcon icon={faArrowAltCircleRight} style={{fontSize:'85px'}} />
       </div>
     );
     
