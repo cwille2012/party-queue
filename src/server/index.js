@@ -118,24 +118,7 @@ app.get(
   '/auth/spotify/callback',
   passport.authenticate('spotify', { 
     failureRedirect: '/host',
-    scope: [
-      'playlist-modify-private',
-      'playlist-modify',
-      //'user-library-modify',
-      'playlist-modify-public',
-      //'playlist-read-collaborative',
-      //'streaming',
-      //'app-remote-control',
-      //'playlist-modify-public',
-      'user-read-email',
-      'user-library-read',
-      //'user-read-playback-state',
-      //'user-read-currently-playing',
-      //'user-modify-playback-state',
-      'user-read-private',
-      'playlist-read-private',
-      //'user-read-recently-played'
-    ],
+    scope: 'playlist-modify-private playlist-modify playlist-modify-public user-read-email user-library-read user-read-private playlist-read-private',
     showDialog: true
   }),
   function(req, res) {
