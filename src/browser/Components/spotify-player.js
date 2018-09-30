@@ -167,10 +167,6 @@ class SpotifyPlayer {
     return this.fetchGeneric('https://api.spotify.com/v1/me').then(data => data.json());
   }
 
-  history() {
-    console.log('from export')
-    return this.fetchGeneric('https://api.spotify.com/v1/me/player/recently-played?scope='+encodeURIComponent('user-read-recently-played')).then(data => data.json());
-  }
 }
 
 export default SpotifyPlayer

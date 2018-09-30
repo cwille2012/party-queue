@@ -76,7 +76,7 @@
   .progress__bar {
     background-color: #eee;
     border: 0.1em solid transparent;
-    height: 0.75em;
+    height: 100%;
   }
   
   /** Background **/
