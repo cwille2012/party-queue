@@ -274,9 +274,12 @@ class Spotify extends React.Component {
         </div>
       );
 
-      return rightSideBar
-
-
+      return (
+        <div>
+        {rightSideBar}
+        {songList}
+        </div>
+      )
     } else {
 
       var spotify = (
