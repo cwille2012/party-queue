@@ -271,7 +271,7 @@ class Spotify extends React.Component {
       });
     }
 
-    fetch('api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
+    fetch('http://api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
