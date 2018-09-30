@@ -156,7 +156,7 @@ app.get(
   '/spotifytest',
   function(req, res) {
     var scopes = ['playlist-modify-public'];
-    var clientId = '5fe01282e44241328a84e7c5cc169165';
+    var clientId = '9aa40bea0e1e40f4973294a79434da4b';
     var state = 'some-state-of-my-choice';
 
     // Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
