@@ -71,11 +71,10 @@ class Spotify extends React.Component {
     var spotify = (
       <div className="container" style={spotifyStyle}>
         <div className="login-container hidden" id="js-login-container">
-          <button className="btn btn--login" id="js-btn-login">Login with Spotify</button>
+          <input type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
         </div>
-          {{mainContainer}}
-        </div>
-      </div>
+        {{mainContainer}}
+       </div>
     );
     
     return spotify
