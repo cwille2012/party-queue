@@ -286,13 +286,16 @@ class Spotify extends React.Component {
       console.log(jsonResponse)
       this.setState({
         session: jsonResponse
+      },function() {
+        this.state.spotifyPlayer.init();
+        this.forceUpdate();
       })
     }).catch (error => {
       alert('Error: ' + error);
       console.log(error);
     })
     
-    this.state.spotifyPlayer.init();
+    // this.state.spotifyPlayer.init();
   }
   
   render() {
