@@ -37,6 +37,7 @@ class Spotify extends React.Component {
       });
     });
     this.playPause = this.playPause.bind(this);
+    this.skip = this.skip.bind(this);
   }
 
   playPause() {
@@ -45,6 +46,10 @@ class Spotify extends React.Component {
     } else {
       console.log('playing')
     }
+  }
+
+  skip() {
+    console.log('skipping')
   }
 
   componentDidMount() {
@@ -67,9 +72,9 @@ class Spotify extends React.Component {
     var playButton;
     if(!!songDetails) {
       if (songDetails.is_playing == true) {
-        playButton = (<FontAwesomeIcon className="icon" icon={faPauseCircle} style={{fontSize:'85px'}} />);
+        playButton = (<FontAwesomeIcon className="icon" icon={faPauseCircle} style={{fontSize:'85px'}} onClick={this.playPause} />);
       } else {
-        playButton = (<FontAwesomeIcon className="icon" icon={faPlayCircle} style={{fontSize:'85px'}} />);
+        playButton = (<FontAwesomeIcon className="icon" icon={faPlayCircle} style={{fontSize:'85px'}} onClick={this.playPause} />);
       }
     }
 
