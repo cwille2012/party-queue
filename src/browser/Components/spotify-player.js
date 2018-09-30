@@ -158,7 +158,7 @@ class SpotifyPlayer {
         console.error('Got error when fetching player', response);
         return null;
       } else {
-        return response.json();
+        return response.json() || {};
       }
     });
   }
