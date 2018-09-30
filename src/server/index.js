@@ -290,8 +290,6 @@ app.get(
 
     res.redirect(authorizationCode);
     
-    // First retrieve an access token
-    
 
   
   }
@@ -302,7 +300,7 @@ function generateAuthCode(scopes) {
   var clientId = '9aa40bea0e1e40f4973294a79434da4b';
   var state = 'some-state-of-my-choice';
   var spotifyApi = new SpotifyWebApi({
-    redirectUri: redirectUri,
+    redirectUri: redirectUri+'/callback/playlist',
     clientId: clientId
   });
   return(spotifyApi.createAuthorizeURL(scopes, state));
