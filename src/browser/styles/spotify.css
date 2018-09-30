@@ -116,3 +116,14 @@
   .main-container {
     flex: 1;
   }
+
+  .control-button--circled:after {
+    border: 1px solid hsla(0,0%,100%,.6);
+    border-radius: 500px;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
