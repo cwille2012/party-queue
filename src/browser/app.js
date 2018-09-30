@@ -112,7 +112,7 @@ class Root extends Component {
       page = (<Home viewport={viewport} client={client} />)
     } else if (request == 'account' && loggedIn === true) { 
       page = (<Account viewport={viewport} client={client} user={user} />);
-    } else if (request == 'join' && loggedIn === true) {
+    } else if ((request == 'join' || request == 'host') && loggedIn === true) {
       page = (<Join viewport={viewport} client={client} user={user} />);
     } else if (request == 'spotify' && loggedIn === true) {
       page = (<Spotify viewport={viewport} client={client} user={user} spotify={this.props.spotify || null} />);
