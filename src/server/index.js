@@ -77,9 +77,9 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-  if (!!req.code) {
+  if (!!req.url.code) {
     console.log('CODE FOUND!')
-    console.log(req.code)
+    console.log(req.url.code)
   }
     
   if (req.url.includes('/?code=')) {
