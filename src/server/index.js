@@ -119,7 +119,7 @@ app.get(
   passport.authenticate('spotify', { 
     failureRedirect: '/host',
     scope: [
-      //'playlist-modify',
+      'playlist-modify',
       //'user-library-modify',
       'playlist-modify-private',
       //'playlist-read-collaborative',
@@ -133,7 +133,7 @@ app.get(
       //'user-modify-playback-state',
       'user-read-private',
       'playlist-read-private',
-      'user-read-recently-played'
+      //'user-read-recently-played'
     ],
     showDialog: true
   }),
