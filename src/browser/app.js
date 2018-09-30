@@ -14,6 +14,8 @@ import Home from './Components/Home';
 import Host from './Components/Host';
 import Account from './Components/Account';
 import Authorize from './Components/Authorize';
+import Join from './Components/Join';
+import Spotify from './Components/Spotify';
 import NotFound from './Components/NotFound';
 
 var mainStyle = require('./styles/main.css');

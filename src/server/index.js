@@ -17,12 +17,27 @@
 // * url/phonecall
 // * url/textmessage
 
+//random emoji for users
+
 //Initilize Server
 const path = require('path');
 const express = require('express');
 const app = express();
 
+// const MongoClient = require('mongodb').MongoClient;
+// var ObjectId = require('mongodb').ObjectID;
+
 var callbackUrl = 'http://partyqueso.com';
+
+// let postCollection;
+// MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass').then(db => {
+//   console.log('Connected to mongodb');
+//   postCollection = db.collection('posts');
+// }).catch(err => {
+//   console.log('Error connecting to mongodb!');
+//   console.log(err);
+//   process.exit(1);
+// });
 
 //Custom Middleware
 app.use(function (req, res, next) {
@@ -114,6 +129,52 @@ app.get(
     }
   }
 );
+
+//Phone call and text message handlers
+
+/*
+{ ToCountry: 'US',
+  ToState: 'ND',
+  SmsMessageSid: 'SMed281c5a57c04181c08ddeb9cc17cef1',
+  NumMedia: '0',
+  ToCity: 'HATTON',
+  FromZip: '33617',
+  SmsSid: 'SMed281c5a57c04181c08ddeb9cc17cef1',
+  FromState: 'FL',
+  SmsStatus: 'received',
+  FromCity: 'TAMPA',
+  Body: 'Yo whatup bitch',
+  FromCountry: 'US',
+  To: '+17015436969',
+  ToZip: '58240',
+  NumSegments: '1',
+  MessageSid: 'SMed281c5a57c04181c08ddeb9cc17cef1',
+  AccountSid: 'AC085164ea58ae869dac754fbbd854b82a',
+  From: '+18137519621',
+  ApiVersion: '2010-04-01' }
+
+{ ToCountry: 'US',
+  MediaContentType0: 'image/jpeg',
+  ToState: 'ND',
+  SmsMessageSid: 'MMa62ef831fe7aa940a7d9b642e999d7f9',
+  NumMedia: '1',
+  ToCity: 'HATTON',
+  FromZip: '33617',
+  SmsSid: 'MMa62ef831fe7aa940a7d9b642e999d7f9',
+  FromState: 'FL',
+  SmsStatus: 'received',
+  FromCity: 'TAMPA',
+  Body: '',
+  FromCountry: 'US',
+  To: '+17015436969',
+  ToZip: '58240',
+  NumSegments: '1',
+  MessageSid: 'MMa62ef831fe7aa940a7d9b642e999d7f9',
+  AccountSid: 'AC085164ea58ae869dac754fbbd854b82a',
+  From: '+18137519621',
+  MediaUrl0: 'https://api.twilio.com/2010-04-01/Accounts/AC085164ea58ae869dac754fbbd854b82a/Messages/MMa62ef831fe7aa940a7d9b642e999d7f9/Media/MEaaa9e4fddfef0db59c330628563a39c8',
+  ApiVersion: '2010-04-01' }
+*/
 
 app.post(
   '/phonecall',
