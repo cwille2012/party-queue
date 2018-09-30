@@ -79,7 +79,7 @@ const BROWSER = {
     new ExtractTextPlugin('bundle.css'),
     function() {
       this.plugin("done", function(statsData) {
-        fs.copySync(path.join(__dirname, 'src', 'browser', 'index.html')).pipe(path.join(__dirname, 'build', 'index.html'));
+        //fs.copySync(path.join(__dirname, 'src', 'browser', 'index.html')).pipe(path.join(__dirname, 'build', 'index.html'));
           var stats = statsData.toJson();
           if (!stats.errors.length) {
             if (node_env == 'production') {
