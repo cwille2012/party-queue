@@ -38,7 +38,6 @@ class Spotify extends React.Component {
       });
     });
 
-    this.getHistory = this.getHistory.bind(this);
   }
 
   componentDidMount() {
