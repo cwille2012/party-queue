@@ -131,8 +131,7 @@ app.get(
   '/spotify',
   function(req, res, next) {
     if (spotifyAccount) {
-      console.log(req)
-      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { user: result, token: client.auth.authInfo.accessToken } }, { upsert: true });
+      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true });
       res.spotify = spotifyAccount;
       next();
     } else {
