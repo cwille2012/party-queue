@@ -30,9 +30,9 @@ const MongoClient = require('mongodb').MongoClient;
 var callbackUrl = 'http://partyqueso.com';
 
 var userCollection;
-MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass').then(db => {
+MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass', { useNewUrlParser: true }, (err, client) => {
   console.log('Connected to mongodb');
-  userCollection = db.collection('users');
+  userCollection = client.db().collection('users');
 }).catch(err => {
   console.log('Error connecting to mongodb!');
   console.log(err);
