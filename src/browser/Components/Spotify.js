@@ -86,33 +86,38 @@ class Spotify extends React.Component {
     }
 
     if (!!this.state.spotifyUser) {
-      if (!!songDetails) {
-        loginContainer = null;
-        songContainer = (
-          <div style={{height:'100%'}}>
-          <div className="main-wrapper" style={{height:'100%'}}>
-            <div className="now-playing__img">
-              <img src={songDetails.item.album.images[0].url} />
-            </div>
-            <div className="now-playing__side">
-              <div className="now-playing__name">{songDetails.item.name}</div>
-              <div className="now-playing__artist">{songDetails.item.artists[0].name}</div>
-              <div className="now-playing__status">{songDetails.is_playing ? 'Playing' : 'Paused'}</div>
-              <div className="progress">
-                <div className="progress__bar" style={{width: String(Number((songDetails.progress_ms * 100) / songDetails.item.duration_ms)+'%')}}></div>
-              </div>
-              <div className="icon-holder">
-                {playButton}
-                <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
-                <input type="button" className="btn btn--login" value="Party Display" onClick={this.partyDisplay } />
-              </div>
-            </div>
-          </div>
-          <div className="background" style={{backgroundImage: String(songDetails.item.album.images[0].url)}}></div>
-        </div>
-        );
+      if (this.state.partyDisplay == true) {
+
+
       } else {
-        songContainer = null;
+        if (!!songDetails) {
+          loginContainer = null;
+          songContainer = (
+            <div style={{height:'100%'}}>
+            <div className="main-wrapper" style={{height:'100%'}}>
+              <div className="now-playing__img">
+                <img src={songDetails.item.album.images[0].url} />
+              </div>
+              <div className="now-playing__side">
+                <div className="now-playing__name">{songDetails.item.name}</div>
+                <div className="now-playing__artist">{songDetails.item.artists[0].name}</div>
+                <div className="now-playing__status">{songDetails.is_playing ? 'Playing' : 'Paused'}</div>
+                <div className="progress">
+                  <div className="progress__bar" style={{width: String(Number((songDetails.progress_ms * 100) / songDetails.item.duration_ms)+'%')}}></div>
+                </div>
+                <div className="icon-holder">
+                  {playButton}
+                  <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
+                  <input type="button" className="btn btn--login" value="Party Display" onClick={this.partyDisplay } />
+                </div>
+              </div>
+            </div>
+            <div className="background" style={{backgroundImage: String(songDetails.item.album.images[0].url)}}></div>
+          </div>
+          );
+        } else {
+          songContainer = null;
+        }
       }
     } else {
       songContainer = null;
@@ -123,14 +128,70 @@ class Spotify extends React.Component {
       );
     }
 
-    var spotify = (
-      <div className="container" style={spotifyStyle}>
-        {loginContainer}
-        {songContainer}
+    if (this.state.partyDisplay == true) {
+
+      var songList = (
+        <div id="pricing-table" class="clear">
+          <div class="plan">
+              <h3>Enterprise<span>$59</span></h3>
+              <a class="signup" href="">Sign up</a>         
+              <ul>
+                  <li><b>10GB</b> Disk Space</li>
+                  <li><b>100GB</b> Monthly Bandwidth</li>
+                  <li><b>20</b> Email Accounts</li>
+            <li><b>Unlimited</b> subdomains</li>			
+              </ul> 
+          </div>
+          <div class="plan" id="most-popular">
+              <h3>Professional<span>$29</span></h3>
+              <a class="signup" href="">Sign up</a>        
+              <ul>
+                  <li><b>5GB</b> Disk Space</li>
+                  <li><b>50GB</b> Monthly Bandwidth</li>
+                  <li><b>10</b> Email Accounts</li>
+            <li><b>Unlimited</b> subdomains</li>			
+              </ul>    
+          </div>
+          <div class="plan">
+              <h3>Standard<span>$17</span></h3>
+          <a class="signup" href="">Sign up</a>
+              <ul>
+                  <li><b>3GB</b> Disk Space</li>
+                  <li><b>25GB</b> Monthly Bandwidth</li>
+                  <li><b>5</b> Email Accounts</li>
+            <li><b>Unlimited</b> subdomains</li>			
+              </ul>
+          </div>
+          <div class="plan">
+              <h3>Basic<span>$9</span></h3>
+              <a class="signup" href="">Sign up</a>		
+              <ul>
+                  <li><b>1GB</b> Disk Space</li>
+                  <li><b>10GB</b> Monthly Bandwidth</li>
+                  <li><b>2</b> Email Accounts</li>
+            <li><b>Unlimited</b> subdomains</li>			
+              </ul>
+          </div> 	
       </div>
-    );
-    
-    return spotify
+      );
+
+      return songList
+
+
+
+
+
+    } else {
+
+      var spotify = (
+        <div className="container" style={spotifyStyle}>
+          {loginContainer}
+          {songContainer}
+        </div>
+      );
+      
+      return spotify
+    }
   }
 }
 
