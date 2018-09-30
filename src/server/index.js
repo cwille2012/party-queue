@@ -287,8 +287,6 @@ app.get(
 
     res.redirect(authorizationCode);
     
-
-  
   }
 );
 
@@ -305,11 +303,6 @@ function generateAuthCode(scopes) {
   //(my response) https://accounts.spotify.com/authorize?client_id=9aa40bea0e1e40f4973294a79434da4b&response_type=code&redirect_uri=http://partyqueso.com&scope=playlist-modify-public&state=some-state-of-my-choice
   // gave response code= AQCJD3V0cjcs2y6UkZYGCss1Vy9wgNQDg30CnHhd3hNXFaraDIZBlJXxMlqusxR0HiotXK7CSayn_arTwGDLP4VZzPC6PqPh9FK6lsGifwtdUc3xTS9rg8qn4EeOGe66Dku29HyNI9EevO00fJFvK1nbay2N0c7Js42RHIL4E8aOIqGoztsI03CDyL6Llz64fmZt1xLfVM47P1vFGCRl-on4hB6G
 }
-
-
-
-
-
 
 //Phone call and text message handlers
 
@@ -356,26 +349,6 @@ function generateAuthCode(scopes) {
   MediaUrl0: 'https://api.twilio.com/2010-04-01/Accounts/AC085164ea58ae869dac754fbbd854b82a/Messages/MMa62ef831fe7aa940a7d9b642e999d7f9/Media/MEaaa9e4fddfef0db59c330628563a39c8',
   ApiVersion: '2010-04-01' }
 */
-
-app.post(
-  '/phonecall',
-  function(req, res, next) {
-    console.log(req.body)
-    res.send('OK');
-  }
-);
-
-app.post(
-  '/textmessage',
-  function(req, res, next) {
-    //for num of pics
-    var textData = {
-
-    };
-    console.log(req.body)
-    res.send('OK');
-  }
-);
 
 //Custom Middleware
 app.use(function (req, res, next) {

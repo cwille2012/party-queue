@@ -16,7 +16,8 @@ class Spotify extends React.Component {
       spotifyPlayer: new SpotifyPlayer(),
       spotifyUser: null,
       songDetails: null,
-      partyDisplay: false
+      partyDisplay: false,
+      session: null
     }
 
     this.state.spotifyPlayer.on('update', response => {
@@ -66,7 +67,29 @@ class Spotify extends React.Component {
         this.state.spotifyPlayer.login();
       });
     }
-    
+
+    'http://api.partyqueso.com/party/<partyid>/queue'
+
+    fetch('http://api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'BQAEvg7ETeQqWEmRAMLV_lhQSSDnmnoWX4QjB-zzJf6ccsNgRu4oX7K0IcUSN2LDBIbzg36Hj4FDxBXPNbHB-9faSoAWM1JzkEKOdQQfkFD4hjGljZ7aj1ajjA0qOYHKM9APipyOENViIPd9a6yDwc9Y2kSenI5srw8h7R3pfL1Y7GouVFAay9V5h8Ur7NyC3LsgXoULNTBbaOe9t9mLSXVobscTtOeHFOZ4DAOhga_INVQ-W3RSqqa5rIpvQsUjJmtZRzhXB8ty5Ksl5UdnZHjEwQ'
+      }
+    })
+    .then(function(response) {
+      return response.json()
+    })
+    .then(jsonResponse => {
+      this.setState({
+        session: jsonResponse
+      })
+    }).catch (error => {
+      alert('Error: ' + error);
+      console.log(error);
+    })
+
     this.state.spotifyPlayer.init();
   }
   
@@ -87,8 +110,38 @@ class Spotify extends React.Component {
 
     if (!!this.state.spotifyUser) {
       if (this.state.partyDisplay == true) {
+        if (!!this.state.session) {
+          var songValues = Object.keys(this.state.session.queue).map(function(key) {
+            return (
+              <tr key={key}>
+                <th>{key}</th>
+                <td>{alarm[key]}</td>
+              </tr>
+            );
+          });
+    
+          var songTable = (
+            <div className="row">
+              <h2>(701)543-6969</h2>
+              <table className="config-table">
+                <thead className="table-head">
+                  <tr className="header-row">
+                    <th style={{width: '50%'}}>Parameter</th>
+                    <th style={{width: '50%'}}>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { songValues }
+                </tbody>
+              </table>
+            </div>
+          );
 
+          return songTable
 
+        } else {
+          return null
+        }
       } else {
         if (!!songDetails) {
           loginContainer = null;
@@ -128,253 +181,8 @@ class Spotify extends React.Component {
       );
     }
 
-    if (this.state.partyDisplay == true) {
-
-      var songList = (
-        <div class="limiter" style={{spotifyStyle}}>
-          <div class="container-table100">
-            <div class="wrap-table100">
-              <div class="table100 ver1">
-                <div class="table100-firstcol">
-                  <table>
-                    <thead>
-                      <tr class="row100 head">
-                        <th class="cell100 column1">Employees</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="row100 body">
-                        <td class="cell100 column1">Brandon Green</td>
-                      </tr>
-
-                      <tr class="row100 body">
-                        <td class="cell100 column1">Kathy Daniels</td>
-                      </tr>
-
-                      <tr class="row100 body">
-                        <td class="cell100 column1">Elizabeth Alvarado</td>
-                      </tr>
-
-                      <tr class="row100 body">
-                        <td class="cell100 column1">Michael Coleman</td>
-                      </tr>
-
-                      <tr class="row100 body">
-                        <td class="cell100 column1">Jason Cox</td>
-                      </tr>
-
-                      <tr class="row100 body">
-                        <td class="cell100 column1">Christian Perkins</td>
-                      </tr>
-
-                      <tr class="row100 body">
-                        <td class="cell100 column1">Emily Wheeler</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                
-                <div class="wrap-table100-nextcols js-pscroll">
-                  <div class="table100-nextcols">
-                    <table>
-                      <thead>
-                        <tr class="row100 head">
-                          <th class="cell100 column2">Position</th>
-                          <th class="cell100 column3">Start date</th>
-                          <th class="cell100 column4">Last Activity</th>
-                          <th class="cell100 column5">Contacts</th>
-                          <th class="cell100 column6">Age</th>
-                          <th class="cell100 column7">Address</th>
-                          <th class="cell100 column8">Card No</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="row100 body">
-                          <td class="cell100 column2">CMO</td>
-                          <td class="cell100 column3">16 Nov 2012</td>
-                          <td class="cell100 column4">16 Nov 2017</td>
-                          <td class="cell100 column5">brandon94@example.com</td>
-                          <td class="cell100 column6">30</td>
-                          <td class="cell100 column7">New York City, NY</td>
-                          <td class="cell100 column8">424242xxxxxx6262</td>
-                        </tr>
-
-                        <tr class="row100 body">
-                          <td class="cell100 column2">Marketing</td>
-                          <td class="cell100 column3">16 Nov 2015</td>
-                          <td class="cell100 column4">30 Nov 2017</td>
-                          <td class="cell100 column5">kathy_82@example.com</td>
-                          <td class="cell100 column6">26</td>
-                          <td class="cell100 column7">New York City, NY</td>
-                          <td class="cell100 column8">424242xxxxxx1616</td>
-                        </tr>
-
-                        <tr class="row100 body">
-                          <td class="cell100 column2">CFO</td>
-                          <td class="cell100 column3">16 Nov 2013</td>
-                          <td class="cell100 column4">30 Nov 2017</td>
-                          <td class="cell100 column5">elizabeth82@example.com</td>
-                          <td class="cell100 column6">32</td>
-                          <td class="cell100 column7">New York City, NY</td>
-                          <td class="cell100 column8">424242xxxxxx5326</td>
-                        </tr>
-
-                        <tr class="row100 body">
-                          <td class="cell100 column2">Designer</td>
-                          <td class="cell100 column3">16 Nov 2013</td>
-                          <td class="cell100 column4">30 Nov 2017</td>
-                          <td class="cell100 column5">michael94@example.com</td>
-                          <td class="cell100 column6">22</td>
-                          <td class="cell100 column7">New York City, NY</td>
-                          <td class="cell100 column8">424242xxxxxx6328</td>
-                        </tr>
-
-                        <tr class="row100 body">
-                          <td class="cell100 column2">Developer</td>
-                          <td class="cell100 column3">16 Nov 2017</td>
-                          <td class="cell100 column4">30 Nov 2017</td>
-                          <td class="cell100 column5">jasoncox@example.com</td>
-                          <td class="cell100 column6">25</td>
-                          <td class="cell100 column7">New York City, NY</td>
-                          <td class="cell100 column8">424242xxxxxx7648</td>
-                        </tr>
-
-                        <tr class="row100 body">
-                          <td class="cell100 column2">Sale</td>
-                          <td class="cell100 column3">16 Nov 2016</td>
-                          <td class="cell100 column4">30 Nov 2017</td>
-                          <td class="cell100 column5">christian_83@example.com</td>
-                          <td class="cell100 column6">28</td>
-                          <td class="cell100 column7">New York City, NY</td>
-                          <td class="cell100 column8">424242xxxxxx4152</td>
-                        </tr>
-
-                        <tr class="row100 body">
-                          <td class="cell100 column2">Support</td>
-                          <td class="cell100 column3">16 Nov 2013</td>
-                          <td class="cell100 column4">30 Nov 2017</td>
-                          <td class="cell100 column5">emily90@example.com</td>
-                          <td class="cell100 column6">24</td>
-                          <td class="cell100 column7">New York City, NY</td>
-                          <td class="cell100 column8">424242xxxxxx6668</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-
-      var rightSideBar = (
-        <div class="col-lg-3 ds" id="sidebar" style={{width:'20%', height: '100%', position: 'absolute', right: '0'}}>
-          <h4 class="centered mt">RECENT ACTIVITY</h4>
-          <div class="desc">
-            <div class="thumb">
-              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-            </div>
-            <div class="details">
-              <p>
-                <muted>Just Now</muted>
-                <br/>
-                <a href="#">Paul Rudd</a> purchased an item.<br/>
-              </p>
-            </div>
-          </div>
-          <div class="desc">
-            <div class="thumb">
-              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-            </div>
-            <div class="details">
-              <p>
-                <muted>2 Minutes Ago</muted>
-                <br/>
-                <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-              </p>
-            </div>
-          </div>
-          <div class="desc">
-            <div class="thumb">
-              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-            </div>
-            <div class="details">
-              <p>
-                <muted>3 Hours Ago</muted>
-                <br/>
-                <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-              </p>
-            </div>
-          </div>
-          <div class="desc">
-            <div class="thumb">
-              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-            </div>
-            <div class="details">
-              <p>
-                <muted>7 Hours Ago</muted>
-                <br/>
-                <a href="#">Brando Page</a> purchased a year subscription.<br/>
-              </p>
-            </div>
-          </div>
-          <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
-          <div class="desc">
-            <div class="thumb">
-              <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="" />
-            </div>
-            <div class="details">
-              <p>
-                <a href="#">DIVYA MANIAN</a><br/>
-                <muted>Available</muted>
-              </p>
-            </div>
-          </div>
-          <div class="desc">
-            <div class="thumb">
-              <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="" />
-            </div>
-            <div class="details">
-              <p>
-                <a href="#">DJ SHERMAN</a><br/>
-                <muted>I am Busy</muted>
-              </p>
-            </div>
-          </div>
-          <div class="desc">
-            <div class="thumb">
-              <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align=""/>
-            </div>
-            <div class="details">
-              <p>
-                <a href="#">DAN ROGERS</a><br/>
-                <muted>Available</muted>
-              </p>
-            </div>
-          </div>
-          <div class="desc">
-            <div class="thumb">
-              <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align=""/>
-            </div>
-            <div class="details">
-              <p>
-                <a href="#">Zac Sniders</a><br/>
-                <muted>Available</muted>
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-
-      return (
-        <div>
-        {rightSideBar}
-        {songList}
-        </div>
-      )
-    } else {
-
+    if (this.state.partyDisplay == false) {
+    
       var spotify = (
         <div className="container" style={spotifyStyle}>
           {loginContainer}
