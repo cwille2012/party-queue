@@ -197,6 +197,26 @@ app.get(
   }
 );
 
+app.get(
+  '/authcode',
+  function(req, res) {
+    var scopes = ['playlist-modify-public'];
+    var redirectUri = 'https://example.com/callback';
+    var clientId = '9aa40bea0e1e40f4973294a79434da4b';
+    var state = 'some-state-of-my-choice';
+
+    var spotifyApi = new SpotifyWebApi({
+      redirectUri: redirectUri,
+      clientId: clientId
+    });
+
+    var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
+
+  // https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
+  console.log(authorizeURL);
+  res.status(200).send(authorizeURL);
+  }
+);
 
 
 
