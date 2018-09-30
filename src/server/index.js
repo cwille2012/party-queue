@@ -115,6 +115,22 @@ app.get(
   }
 );
 
+app.post(
+  '/phonecall',
+  function(req, res, next) {
+    console.log(req.body)
+    res.send('OK');
+  }
+);
+
+app.post(
+  '/textmessage',
+  function(req, res, next) {
+    console.log(req.body)
+    res.send('OK');
+  }
+);
+
 //Custom Middleware
 app.use(function (req, res, next) {
   res.sendfile('./build/index.html');
