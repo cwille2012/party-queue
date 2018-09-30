@@ -73,7 +73,7 @@ class Spotify extends React.Component {
               <div className="now-playing__artist">{songDetails.item.artists[0].name}</div>
               <div className="now-playing__status">{songDetails.is_playing ? 'Playing' : 'Paused'}</div>
               <div className="progress">
-                <div className="progress__bar" style={{width: String((songDetails.progress_ms * 100) / songDetails.item.duration_ms)}}></div>
+                <div className="progress__bar" style={{width: String(Number((songDetails.progress_ms * 100) / songDetails.item.duration_ms)+'%')}}></div>
               </div>
             </div>
           </div>
