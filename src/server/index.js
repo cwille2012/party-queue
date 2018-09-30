@@ -118,7 +118,15 @@ app.get(
   '/auth/spotify/callback',
   passport.authenticate('spotify', { 
     failureRedirect: '/host',
-    scope: 'playlist-modify-private playlist-modify playlist-modify-public user-read-email user-library-read user-read-private playlist-read-private',
+    scope: [
+      'playlist-modify-private',
+      'playlist-modify',
+      'playlist-modify-public',
+      'user-read-email',
+      'user-library-read',
+      'user-read-private',
+      'playlist-read-private'
+    ],
     showDialog: true
   }),
   function(req, res) {
