@@ -198,29 +198,92 @@ app.get(
 );
 
 app.get(
-  '/authcode',
+  '/makeplaylist',
   function(req, res) {
-    var scopes = ['playlist-modify-public'];
-    var redirectUri = callbackUrl;
-    var clientId = '9aa40bea0e1e40f4973294a79434da4b';
-    var state = 'some-state-of-my-choice';
+
+    var authorizationCode = generateAuthCode(['playlist-modify-public']);
 
     var spotifyApi = new SpotifyWebApi({
-      redirectUri: redirectUri,
-      clientId: clientId
+      clientId: '9aa40bea0e1e40f4973294a79434da4b',
+      clientSecret: '8e7e1113a8434baca630c02abb67bb66',
+      redirectUri: callbackUrl
     });
+    
+    var playlistId;
+    
+    // First retrieve an access token
+    spotifyApi
+      .authorizationCodeGrant(authorizationCode)
+      .then(function(data) {
+        // Save the access token so that it's used in future requests
+        spotifyApi.setAccessToken(data['access_token']);
+    
+        // Create a playlist
+        return spotifyApi.createPlaylist(
+          'chr154k',
+          'My New Awesome Playlist'
+        );
+      })
+      .then(function(data) {
+        console.log('Ok. Playlist created!');
+        playlistId = data.body['id'];
+    
+        // Add tracks to the playlist
+        return spotifyApi.addTracksToPlaylist('chr154k', playlistId, [
+          'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
+          'spotify:track:6tcfwoGcDjxnSc6etAkDRR',
+          'spotify:track:4iV5W9uYEdYUVa79Axb7Rh'
+        ]);
+      })
+      .then(function(data) {
+        console.log('Ok. Tracks added!');
+    
+        // Woops! Made a duplicate. Remove one of the duplicates from the playlist
+        return spotifyApi.removeTracksFromPlaylist('chr154k', playlistId, [
+          {
+            uri: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
+            positions: [0]
+          }
+        ]);
+      })
+      .then(function(data) {
+        console.log('Ok. Tracks removed!');
+    
+        // Actually, lets just replace all tracks in the playlist with something completely different
+        return spotifyApi.replaceTracksInPlaylist('chr154k', playlistId, [
+          'spotify:track:5Wd2bfQ7wc6GgSa32OmQU3',
+          'spotify:track:4r8lRYnoOGdEi6YyI5OC1o',
+          'spotify:track:4TZZvblv2yzLIBk2JwJ6Un',
+          'spotify:track:2IA4WEsWAYpV9eKkwR2UYv',
+          'spotify:track:6hDH3YWFdcUNQjubYztIsG'
+        ]);
+      })
+      .then(function(data) {
+        console.log('Ok. Tracks replaced!');
+        res.status(200).send('Ok. Tracks replaced!');
+      })
+      .catch(function(err) {
+        console.log(err.message);
+        console.log('Something went wrong!');
+        res.status(400).send(err.message);
+      });
 
-    var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
-
-  //(example response) https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
-  //(my response) https://accounts.spotify.com/authorize?client_id=9aa40bea0e1e40f4973294a79434da4b&response_type=code&redirect_uri=https://example.com/callback&scope=playlist-modify-public&state=some-state-of-my-choice
-  console.log(authorizeURL);
-  res.status(200).send(authorizeURL);
+  
   }
 );
 
-
-
+function generateAuthCode(scopes) {
+  var redirectUri = callbackUrl;
+  var clientId = '9aa40bea0e1e40f4973294a79434da4b';
+  var state = 'some-state-of-my-choice';
+  var spotifyApi = new SpotifyWebApi({
+    redirectUri: redirectUri,
+    clientId: clientId
+  });
+  return(spotifyApi.createAuthorizeURL(scopes, state));
+  //(example response) https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
+  //(my response) https://accounts.spotify.com/authorize?client_id=9aa40bea0e1e40f4973294a79434da4b&response_type=code&redirect_uri=http://partyqueso.com&scope=playlist-modify-public&state=some-state-of-my-choice
+}
 
 
 
