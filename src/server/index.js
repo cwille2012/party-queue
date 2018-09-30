@@ -101,7 +101,12 @@ passport.use(
       callbackURL: String(callbackUrl+'/auth/spotify/callback')
     },
     function(accessToken, refreshToken, expires_in, profile, done) {
-      spotifyAccount = profile;
+      spotifyAccount = {
+        ...profile,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+        expires_in: expires_in
+      };
       console.log(profile)
       return done(null, profile);
       // User.findOrCreate({ spotifyId: profile.id }, function(err, user) {
@@ -131,7 +136,6 @@ app.get(
   '/spotify',
   function(req, res, next) {
     if (spotifyAccount) {
-      spotifyAccount = JSON.parse(spotifyAccount._raw);
       userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true })
       .then(result => {
         next();
