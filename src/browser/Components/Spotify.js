@@ -61,7 +61,8 @@ class Spotify extends React.Component {
       }
     });
     
-    loginButton.addEventListener('click', () => {
+    if (!!document.getElementById('js-btn-login'))
+    document.getElementById('js-btn-login').addEventListener('click', () => {
       this.state.spotifyPlayer.login();
     });
     
