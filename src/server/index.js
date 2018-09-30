@@ -210,6 +210,8 @@ app.get(
     });
     
     var playlistId;
+
+    console.log(authorizationCode)
     
     // First retrieve an access token
     spotifyApi
