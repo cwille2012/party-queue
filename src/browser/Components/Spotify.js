@@ -360,7 +360,7 @@ class Spotify extends React.Component {
         songContainer = (
           
             <div className="main-wrapper" style={{height:'100%'}}>
-            <div>
+            <div style={{display: 'inlineBlock', marginTop: '100px'}}>
               <div className="now-playing__img">
                 <img src={songDetails.item.album.images[0].url} />
               </div>
