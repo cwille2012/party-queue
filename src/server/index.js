@@ -76,6 +76,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(function(req, res, next) {
+  console.log(req.url)
+  next()
+});
+
 //Spotify Authentication
 var passport = require('passport');
 app.use(passport.initialize());
@@ -198,6 +203,7 @@ app.get(
   }
 );
 
+//http://partyqueso.com/?code=AQCX5VXIpQiftnHgOKfcvczkRHUVwgl-EuAyoi6zXhJd-kBgVPQCdp_Lx7ObtjUZu4rJ2DQcMRhGyLlNpPAxIGRu1M65clPXeS4kis6rEpYF-8WpiAxoY8BAP8T4LLEcWgI6fBbmth4gRT9Sn2LK2Rm89B51Z4Bq8ZC57pmXkOxLz_7yHX5HIvvymfguEuNqfRUTwyT_53s0X_7WHn0E9grktdsh&state=some-state-of-my-choice
 app.get(
   '/callback/playlist',
   function(req, res) {
@@ -281,8 +287,6 @@ app.get(
       clientSecret: '8e7e1113a8434baca630c02abb67bb66',
       redirectUri: callbackUrl+'/callback/playlist'
     });
-    
-    var playlistId;
 
     res.redirect(authorizationCode);
     
