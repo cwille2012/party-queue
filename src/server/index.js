@@ -360,3 +360,13 @@ const port = process.env.SERVER_PORT || 80;
 app.listen(port, () => {
   console.log(`Server is running on port: ` + port);
 });
+
+
+app.post(
+  '/api/text',
+  function(req, res) {
+
+    console.log(req.body)
+    
+  }
+);
