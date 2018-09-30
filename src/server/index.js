@@ -148,6 +148,34 @@ app.get(
   }
 );
 
+//Secondary Spotify authentication method
+var SpotifyWebApi = require('spotify-web-api-node');
+
+var scopes = ['user-read-private', 'user-read-email'];
+var redirectUri = 'https://example.com/callback';
+var clientId = '5fe01282e44241328a84e7c5cc169165';
+var state = 'some-state-of-my-choice';
+
+// Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
+var spotifyApi = new SpotifyWebApi({
+  redirectUri: callbackUrl,
+  clientId: clientId
+});
+
+// Create the authorization URL
+var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
+
+console.log(authorizeURL);
+
+// credentials are optional
+// var spotifyApi = new SpotifyWebApi({
+//   clientId: '9aa40bea0e1e40f4973294a79434da4b',
+//   clientSecret: '8e7e1113a8434baca630c02abb67bb66',
+//   redirectUri: callbackUrl
+// });
+
+var authorizationCode =
+
 //Phone call and text message handlers
 
 /*
