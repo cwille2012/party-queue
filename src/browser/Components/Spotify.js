@@ -271,12 +271,12 @@ class Spotify extends React.Component {
       });
     }
 
-    fetch('http://api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
+    fetch('api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'BQCWq6huix_Or-ZtwiMe2kwtZEol8SGQrX3HazlGRFOOLMUav_aOXtdnZBOAopoyCi1QzM6sVKwubZQtVdssv2InMpjnRnHfs_gRMx13IC4xtmhdSIdSFP0Dx8Vr-5jX6QvK8vPOliBCXQm2Pw7evx12Uh5qeZo87JGQe3pQHwRpcL-b9_qixG42y4bmBMEfS251plJE3KKEwqP5lBFDl1J4cGHiW-lIm5vlsaxASPT3l1AQxkk08853ywXoVwFZlaTHHyCLpmr0L8PFsXbDZ8yvEQ'
+        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzgzMjc5MDcsImlhdCI6MTUzODMyNjEwNywiaXNzIjoiNWJiMGZlNWJiNGE1YzU1ZmE0Y2JmNWQ1Iiwic3RpdGNoX2RhdGEiOm51bGwsInN0aXRjaF9kZXZJZCI6IjViYjBmZTViYjRhNWM1NWZhNGNiZjVkNCIsInN0aXRjaF9kb21haW5JZCI6IjViOTdkM2FhMGUxMTkwZjg2YmUyMjIzOCIsInN1YiI6IjViOTdlY2IzYTY2ZTY3ZGY0N2QzYWM2YiIsInR5cCI6ImFjY2VzcyJ9.mUBy6XuYenGloGxakkcIYq8xfU34QWU4Sdic8wgv1Co'
       }
     })
     .then(function(response) {
