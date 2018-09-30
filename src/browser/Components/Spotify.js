@@ -37,6 +37,8 @@ class Spotify extends React.Component {
         this.forceUpdate();
       });
     });
+
+    this.getHistory = this.getHistory.bind(this);
   }
 
   componentDidMount() {
@@ -92,7 +94,7 @@ class Spotify extends React.Component {
       songContainer = null;
       loginContainer = (
         <div className="login-container" id="js-login-container">
-          <input type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
+          <input style={{zIndex:'5'}} type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
         </div>
       );
     }
