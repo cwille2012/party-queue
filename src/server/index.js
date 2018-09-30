@@ -121,6 +121,7 @@ app.get(
     scope: [
       'playlist-modify',
       //'user-library-modify',
+      'playlist-modify-public',
       'playlist-modify-private',
       //'playlist-read-collaborative',
       //'streaming',
