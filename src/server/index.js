@@ -29,7 +29,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 var callbackUrl = 'http://partyqueso.com';
 
-let userCollection;
+var userCollection;
 MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass').then(db => {
   console.log('Connected to mongodb');
   userCollection = db.collection('users');
