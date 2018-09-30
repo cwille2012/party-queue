@@ -361,6 +361,7 @@ class Spotify extends React.Component {
           
             <div className="main-wrapper" style={{height:'100%'}}>
             <div style={{display: 'inlineBlock', marginTop: '100px'}}>
+            <h2>(701) 453-6969</h2>
               <div className="now-playing__img">
                 <img src={songDetails.item.album.images[0].url} />
               </div>
