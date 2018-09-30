@@ -131,9 +131,11 @@ app.get(
   '/spotify',
   function(req, res, next) {
     if (spotifyAccount) {
-      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true });
-      res.spotify = spotifyAccount;
-      next();
+      spotifyAccount = JSON.parse(spotifyAccount._raw);
+      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true })
+      .then(result => {
+        next();
+      });
     } else {
       res.redirect('/host');
     }
