@@ -209,6 +209,7 @@ app.get(
   function(req, res) {
     console.log('HERE')
     var code = req.params.code.split('?')[1];
+    console.log(code)
 
     var credentials = {
       clientId: '9aa40bea0e1e40f4973294a79434da4b',
