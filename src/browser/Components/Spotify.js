@@ -28,7 +28,7 @@ class Spotify extends React.Component {
 
     this.state.spotifyPlayer.on('update', response => {
       console.log('updating')
-      mainContainer = (
+      this.state.mainContainer = (
         <div style={spotifyStyle}>
         <div className="main-wrapper" style={{height:'100%'}}>
           <div className="now-playing__img">
@@ -60,7 +60,7 @@ class Spotify extends React.Component {
         this.state.loginContainer = null;
       }
     });
-    
+
     if (!!document.getElementById('js-btn-login'))
     document.getElementById('js-btn-login').addEventListener('click', () => {
       this.state.spotifyPlayer.login();
