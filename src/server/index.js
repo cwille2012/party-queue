@@ -116,7 +116,15 @@ app.get('/auth/spotify',
 
 app.get(
   '/auth/spotify/callback',
-  passport.authenticate('spotify', { failureRedirect: '/host' }),
+  passport.authenticate('spotify', { 
+    failureRedirect: '/host',
+    scope: [
+      'user-read-email',
+      'user-read-private',
+      'playlist-modify-private',
+      'playlist-read-private'
+    ]
+  }),
   function(req, res) {
     if (spotifyAccount) {
       userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotifyUserId: spotifyAccount.spotifyUserId, spotifyAccessToken: spotifyAccount.spotifyAccessToken } }, { upsert: true });
@@ -193,6 +201,10 @@ app.post(
 app.post(
   '/textmessage',
   function(req, res, next) {
+    //for num of pics
+    var textData = {
+
+    };
     console.log(req.body)
     res.send('OK');
   }
