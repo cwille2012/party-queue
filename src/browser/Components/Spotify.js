@@ -25,7 +25,24 @@ class Spotify extends React.Component {
     //var spotifyPlayer = new SpotifyPlayer();
 
     this.state.spotifyPlayer.on('update', response => {
-      mainContainer.innerHTML = template(response);
+      mainContainer.innerHTML = (
+        <div style={spotifyStyle}>
+        <div className="main-wrapper">
+          <div className="now-playing__img">
+            <img src="${response.item.album.images[0].url}" />
+          </div>
+          <div className="now-playing__side">
+            <div className="now-playing__name">${response.item.name}</div>
+            <div className="now-playing__artist">${response.item.artists[0].name}</div>
+            <div className="now-playing__status">${response.is_playing ? 'Playing' : 'Paused'}</div>
+            <div className="progress">
+              <div className="progress__bar" style="width:${response.progress_ms * 100 / response.item.duration_ms}%"></div>
+            </div>
+          </div>
+        </div>
+        <div className="background" style="background-image:url(${response.item.album.images[0].url})"></div>
+      </div>
+      )
     });
     
     this.state.spotifyPlayer.on('login', user => {

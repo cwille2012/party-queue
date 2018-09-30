@@ -120,10 +120,18 @@ app.get(
     failureRedirect: '/host',
     scope: [
       'playlist-modify',
+      'user-library-modify',
       'playlist-modify-private',
-      'user-read-email',
-      'user-read-private',
+      'playlist-read-collaborative',
+      'streaming',
+      'app-remote-control',
       'playlist-modify-public',
+      'user-read-email',
+      'user-library-read',
+      'user-read-playback-state',
+      'user-read-currently-playing',
+      'user-modify-playback-state',
+      'user-read-private',
       'playlist-read-private'
     ],
     showDialog: true
