@@ -26,6 +26,10 @@ class Host extends React.Component {
           </div>
 
           <div className='hostbuttonholder'>
+            <input type='button' className='hostbutton' onClick={() => window.location="/auth/spotify/player"} value='Launch Display' />
+          </div>
+
+          <div className='hostbuttonholder'>
             <input type='button' className='hostbutton' onClick={() => window.location="/"} value='Back' />
           </div>
         </div>

@@ -15,12 +15,11 @@ class Spotify extends React.Component {
       client: client,
       spotifyPlayer: new SpotifyPlayer(),
       spotifyUser: null,
-      songDetails: null
+      songDetails: null,
+      partyDisplay: false
     }
 
     this.state.spotifyPlayer.on('update', response => {
-      console.log('updating')
-      console.log(response.progress_ms)
       this.setState({
         songDetails: response
       }, function(){
@@ -29,7 +28,6 @@ class Spotify extends React.Component {
     });
 
     this.state.spotifyPlayer.on('login', user => {
-      console.log('logging in')
       this.setState({
         spotifyUser: user
       }, function(){
@@ -38,6 +36,7 @@ class Spotify extends React.Component {
     });
     this.playPause = this.playPause.bind(this);
     this.skip = this.skip.bind(this);
+    this.partyDisplay = this.partyDisplay.bind(this);
   }
 
   playPause() {
@@ -50,6 +49,14 @@ class Spotify extends React.Component {
 
   skip() {
     console.log('skipping')
+  }
+
+  partyDisplay() {
+    this.setState({
+      partyDisplay: !this.state.partyDisplay
+    }, function(){
+      this.forceUpdate();
+    });
   }
 
   componentDidMount() {
@@ -81,7 +88,6 @@ class Spotify extends React.Component {
     if (!!this.state.spotifyUser) {
       if (!!songDetails) {
         loginContainer = null;
-        console.log(songDetails)
         songContainer = (
           <div style={{height:'100%'}}>
           <div className="main-wrapper" style={{height:'100%'}}>
@@ -98,6 +104,7 @@ class Spotify extends React.Component {
               <div className="icon-holder">
                 {playButton}
                 <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
+                <input type="button" className="btn btn--login" value="Party Display" onClick={this.partyDisplay } />
               </div>
             </div>
           </div>
