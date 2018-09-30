@@ -68,10 +68,10 @@ const BROWSER = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'browser', 'index.html'),
-      inject: false
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src', 'browser', 'index.html'),
+    //   inject: false
+    // }),
     new CopyWebpackPlugin([{
       from: './src/browser/public',
       to: './' 
@@ -79,6 +79,7 @@ const BROWSER = {
     new ExtractTextPlugin('bundle.css'),
     function() {
       this.plugin("done", function(statsData) {
+        fs.createReadStream(path.join(__dirname, 'src', 'browser', 'index.html')).pipe(path.join(__dirname, 'build', 'index.html'));
           var stats = statsData.toJson();
           if (!stats.errors.length) {
             if (node_env == 'production') {
