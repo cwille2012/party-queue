@@ -119,10 +119,10 @@ app.get(
   passport.authenticate('spotify', { 
     failureRedirect: '/host',
     scope: [
+      'playlist-modify-private',
       'playlist-modify',
       //'user-library-modify',
       'playlist-modify-public',
-      'playlist-modify-private',
       //'playlist-read-collaborative',
       //'streaming',
       //'app-remote-control',
