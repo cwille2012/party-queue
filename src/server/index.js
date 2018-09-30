@@ -24,20 +24,20 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-// const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 // var ObjectId = require('mongodb').ObjectID;
 
 var callbackUrl = 'http://partyqueso.com';
 
-// var userCollection;
-// MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass').then(db => {
-//   console.log('Connected to mongodb');
-//   userCollection = db.collection('users');
-// }).catch(err => {
-//   console.log('Error connecting to mongodb!');
-//   console.log(err);
-//   process.exit(1);
-// });
+var userCollection;
+MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass').then(db => {
+  console.log('Connected to mongodb');
+  userCollection = db.collection('users');
+}).catch(err => {
+  console.log('Error connecting to mongodb!');
+  console.log(err);
+  process.exit(1);
+});
 
 //Custom Middleware
 app.use(function (req, res, next) {
@@ -70,6 +70,7 @@ app.use(function(req, res, next) {
   if (req.headers.cookie && req.headers.cookie.includes('owner_id=')) {
     var owner_id = req.headers.cookie.split('owner_id=')[1];
     console.log(owner_id)
+    req.owner_id = owner_id;
   }
   if (req.headers.cookie && req.headers.cookie.includes('spotify_id=')) {
     var spotify_id = req.headers.cookie.split('spotify_id=')[1];
@@ -134,7 +135,7 @@ app.get(
   function(req, res, next) {
     if (spotifyAccount) {
       console.log(req)
-      //userCollection.updateOne({ owner_id: client.auth.user.id }, { $set: { user: result, token: client.auth.authInfo.accessToken } }, { upsert: true });
+      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { user: result, token: client.auth.authInfo.accessToken } }, { upsert: true });
       res.spotify = spotifyAccount;
       next();
     } else {
