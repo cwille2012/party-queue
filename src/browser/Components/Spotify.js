@@ -96,8 +96,8 @@ class Spotify extends React.Component {
       <div className="container" style={spotifyStyle}>
         {loginContainer}
         {songContainer}
-        <button class="control-button spoticon-play-16 control-button--circled" title="Play"></button>
-        <button class="control-button spoticon-skip-forward-16" title="Next"></button>
+        <button className="control-button spoticon-play-16 control-button--circled" title="Play"></button>
+        <button className="control-button spoticon-skip-forward-16" title="Next"></button>
       </div>
     );
     
