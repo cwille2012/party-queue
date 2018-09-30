@@ -28,8 +28,6 @@ class Spotify extends React.Component {
       });
     });
 
-
-
     this.state.spotifyPlayer.on('login', user => {
       console.log('logging in')
       this.setState({
@@ -38,7 +36,15 @@ class Spotify extends React.Component {
         this.forceUpdate();
       });
     });
+    this.playPause = this.playPause.bind(this);
+  }
 
+  playPause() {
+    if(this.state.songDetails.is_playing == true) {
+      console.log('pausing')
+    } else {
+      console.log('playing')
+    }
   }
 
   componentDidMount() {
