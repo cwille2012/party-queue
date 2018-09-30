@@ -108,7 +108,7 @@ class Spotify extends React.Component {
                 <div className="icon-holder">
                   {playButton}
                   <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
-                  <input type="button" className="btn btn--login" value="Party Display" onClick={this.partyDisplay } />
+                  <input type="button" className="btn btn--login" value="Party Display" onClick={this.partyDisplay} style={{width:'45%'}} />
                 </div>
               </div>
             </div>
