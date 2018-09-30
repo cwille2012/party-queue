@@ -13,7 +13,8 @@ class Spotify extends React.Component {
       user: user,
       client: client,
       spotifyPlayer: new SpotifyPlayer(),
-      mainContainer: null
+      mainContainer: null,
+      loginContainer: null
     }
   }
 
@@ -49,11 +50,14 @@ class Spotify extends React.Component {
     
     this.state.spotifyPlayer.on('login', user => {
       if (user === null) {
-        loginContainer.style.display = 'block';
-        mainContainer.style.display = 'none';
+        this.state.loginContainer = (
+          <div className="login-container" id="js-login-container">
+            <input type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
+          </div>
+        );
+        this.state.mainContainer = null;
       } else {
-        loginContainer.style.display = 'none';
-        mainContainer.style.display = 'block';
+        this.state.loginContainer = null;
       }
     });
     
@@ -70,9 +74,7 @@ class Spotify extends React.Component {
 
     var spotify = (
       <div className="container" style={spotifyStyle}>
-        <div className="login-container hidden" id="js-login-container">
-          <input type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
-        </div>
+        {this.state.loginContainer}
         {this.state.mainContainer}
        </div>
     );
