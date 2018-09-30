@@ -313,31 +313,59 @@ class Spotify extends React.Component {
       }
     }
 
+    var sessionTable = null;
+    if(!!this.state.session) {
+      var sessionValues = Object.keys(this.state.session).map(function(key) {
+        return (
+          <tr key={key}>
+            <th>{key}</th>
+            <td>{alarm[key]}</td>
+          </tr>
+        );
+      });
+
+      sessionTable = (
+        <div className="row">
+          <table className="config-table">
+            <thead className="table-head">
+              <tr className="header-row">
+                <th style={{width: '50%'}}>Parameter</th>
+                <th style={{width: '50%'}}>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              { sessionValues }
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
     if (!!this.state.spotifyUser) {
       if (!!songDetails) {
         loginContainer = null;
         songContainer = (
           <div style={{height:'100%'}}>
-          <div className="main-wrapper" style={{height:'100%'}}>
-            <div className="now-playing__img">
-              <img src={songDetails.item.album.images[0].url} />
-            </div>
-            <div className="now-playing__side">
-              <div className="now-playing__name">{songDetails.item.name}</div>
-              <div className="now-playing__artist">{songDetails.item.artists[0].name}</div>
-              <div className="now-playing__status">{songDetails.is_playing ? 'Playing' : 'Paused'}</div>
-              <div className="progress">
-                <div className="progress__bar" style={{width: String(Number((songDetails.progress_ms * 100) / songDetails.item.duration_ms)+'%')}}></div>
+            <div className="main-wrapper" style={{height:'100%'}}>
+              <div className="now-playing__img">
+                <img src={songDetails.item.album.images[0].url} />
               </div>
-              <div className="icon-holder">
-                {playButton}
-                <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
-                <input type="button" className="btn btn--login" value="Party Display" onClick={this.partyDisplay } />
+              <div className="now-playing__side">
+                <div className="now-playing__name">{songDetails.item.name}</div>
+                <div className="now-playing__artist">{songDetails.item.artists[0].name}</div>
+                <div className="now-playing__status">{songDetails.is_playing ? 'Playing' : 'Paused'}</div>
+                <div className="progress">
+                  <div className="progress__bar" style={{width: String(Number((songDetails.progress_ms * 100) / songDetails.item.duration_ms)+'%')}}></div>
+                </div>
+                <div className="icon-holder">
+                  {playButton}
+                  <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
+                </div>
               </div>
             </div>
+            <div className="background" style={{backgroundImage: String(songDetails.item.album.images[0].url)}}></div>
+            {sessionTable}
           </div>
-          <div className="background" style={{backgroundImage: String(songDetails.item.album.images[0].url)}}></div>
-        </div>
         );
       } else {
         songContainer = null;
