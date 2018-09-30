@@ -184,7 +184,7 @@ app.get(
 
         // Create a playlist
         return spotifyApi.createPlaylist(
-          'thelinmichael',
+          'chr154k',
           'My New Awesome Playlist'
         );
       })
@@ -193,7 +193,7 @@ app.get(
         playlistId = data.body['id'];
 
         // Add tracks to the playlist
-        return spotifyApi.addTracksToPlaylist('thelinmichael', playlistId, [
+        return spotifyApi.addTracksToPlaylist('chr154k', playlistId, [
           'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
           'spotify:track:6tcfwoGcDjxnSc6etAkDRR',
           'spotify:track:4iV5W9uYEdYUVa79Axb7Rh'
@@ -203,7 +203,7 @@ app.get(
         console.log('Ok. Tracks added!');
 
         // Woops! Made a duplicate. Remove one of the duplicates from the playlist
-        return spotifyApi.removeTracksFromPlaylist('thelinmichael', playlistId, [
+        return spotifyApi.removeTracksFromPlaylist('chr154k', playlistId, [
           {
             uri: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
             positions: [0]
@@ -214,7 +214,7 @@ app.get(
         console.log('Ok. Tracks removed!');
 
         // Actually, lets just replace all tracks in the playlist with something completely different
-        return spotifyApi.replaceTracksInPlaylist('thelinmichael', playlistId, [
+        return spotifyApi.replaceTracksInPlaylist('chr154k', playlistId, [
           'spotify:track:5Wd2bfQ7wc6GgSa32OmQU3',
           'spotify:track:4r8lRYnoOGdEi6YyI5OC1o',
           'spotify:track:4TZZvblv2yzLIBk2JwJ6Un',
