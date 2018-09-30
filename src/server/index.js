@@ -172,33 +172,22 @@ app.get(
     
         // Save the access token so that it's used in future calls
         spotifyApi.setAccessToken(data.body['access_token']);
-      },
-      function(err) {
-        console.log('Something went wrong when retrieving an access token', err);
-      }
-    )
-    .then(
-      function(data) {
-        var spotifyApi = new SpotifyWebApi({
-          accessToken: 'njd9wng4d0ycwnn3g4d1jm30yig4d27iom5lg4d3'
-        });
-        spotifyApi.createPlaylist(
+
+        return spotifyApi.createPlaylist(
           'chr154k',
           'My New Awesome Playlist'
         );
       })
       .then(function(data) {
         console.log('Ok. Playlist created!');
-        var playlistId = data.body['id'];
+        playlistId = data.body['id'];
     
-        return spotifyApi.addTracksToPlaylist('thelinmichael', playlistId, [
+        // Add tracks to the playlist
+        return spotifyApi.addTracksToPlaylist('chr154k', playlistId, [
           'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
           'spotify:track:6tcfwoGcDjxnSc6etAkDRR',
           'spotify:track:4iV5W9uYEdYUVa79Axb7Rh'
         ]);
-      })
-      .then(function(data) {
-        console.log('Ok. Tracks added!');
       })
       .catch(function(err) {
         console.log(err.message);
