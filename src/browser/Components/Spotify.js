@@ -172,6 +172,16 @@ class Spotify extends React.Component {
             <li><b>Unlimited</b> subdomains</li>			
               </ul>
           </div> 	
+          <div class="plan">
+              <h3>Basic<span>$9</span></h3>
+              <a class="signup" href="">Sign up</a>		
+              <ul>
+                  <li><b>1GB</b> Disk Space</li>
+                  <li><b>10GB</b> Monthly Bandwidth</li>
+                  <li><b>2</b> Email Accounts</li>
+            <li><b>Unlimited</b> subdomains</li>			
+              </ul>
+          </div> 	
       </div>
       );
 
