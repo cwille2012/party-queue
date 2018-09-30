@@ -136,7 +136,7 @@ app.use(function (req, res, next) {
   res.sendfile('./build/index.html');
 });
 
-const port = process.env.SERVER_PORT || 9600;
+const port = process.env.SERVER_PORT || 80;
 
 app.listen(port, () => {
   console.log(`Server is running on port: ` + port);
