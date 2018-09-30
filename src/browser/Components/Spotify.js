@@ -272,7 +272,7 @@ class Spotify extends React.Component {
     }
 
     fetch('http://api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
