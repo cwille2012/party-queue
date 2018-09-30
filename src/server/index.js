@@ -174,6 +174,7 @@ var playlistId;
 spotifyApi
   .authorizationCodeGrant(authorizationCode)
   .then(function(data) {
+    console.log(data)
     // Save the access token so that it's used in future requests
     spotifyApi.setAccessToken(data['access_token']);
 
