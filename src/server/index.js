@@ -102,10 +102,8 @@ passport.use(
     },
     function(accessToken, refreshToken, expires_in, profile, done) {
       spotifyAccount = {
-        profile: profile,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        expires_in: expires_in
+        spotifyUserId: profile.id,
+        spotifyAccessToken: accessToken
       };
       console.log(profile)
       return done(null, profile);
