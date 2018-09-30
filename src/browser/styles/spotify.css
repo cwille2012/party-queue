@@ -127,3 +127,42 @@
     right: 0;
     top: 0;
 }
+
+[class*=" spoticon-"]:before, [class^=spoticon-]:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-family: glue1-spoticon;
+    font-style: normal;
+    font-weight: 400;
+    line-height: inherit;
+    text-decoration: inherit;
+    vertical-align: bottom;
+}
+
+.spoticon-pause-16:before {
+    content: "\F130";
+    font-size: 16px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2)
+.control-button--circled {
+    -webkit-transition-duration: 50ms;
+    transition-duration: 50ms;
+}
+
+.control-button {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: hsla(0,0%,100%,.6);
+    height: 32px;
+    min-width: 32px;
+    position: relative;
+    width: 32px;
+    font-family: spotify-circular,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic,sans-serif;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: .015em;
+    line-height: 20px;
+    text-transform: none;
+}
