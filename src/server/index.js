@@ -208,7 +208,7 @@ app.get(
   '/callback/playlist/:code',
   function(req, res) {
     console.log('HERE')
-    var code = req.params.code.split('?')[1];
+    var code = req.params.code.split('=')[1];
     console.log(code)
 
     var credentials = {
