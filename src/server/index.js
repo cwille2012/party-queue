@@ -132,7 +132,8 @@ app.get(
       //'user-read-currently-playing',
       //'user-modify-playback-state',
       'user-read-private',
-      'playlist-read-private'
+      'playlist-read-private',
+      'user-read-recently-played'
     ],
     showDialog: true
   }),
