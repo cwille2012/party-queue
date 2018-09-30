@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlayCircle, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { faPlayCircle, faArrowAltCircleRight, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
 
 import SpotifyPlayer from './spotify-player.js';
 
@@ -58,6 +58,13 @@ class Spotify extends React.Component {
     var songContainer = null;
     var loginContainer = null;
 
+    var playButton;
+    if (songDetails.is_playing == true) {
+      playButton = (<FontAwesomeIcon icon={faPauseCircle} style={{fontSize:'85px'}} />);
+    } else {
+      playButton = (<FontAwesomeIcon icon={faPlayCircle} style={{fontSize:'85px'}} />);
+    }
+
 
     if (!!this.state.spotifyUser) {
       if (!!songDetails) {
@@ -77,7 +84,7 @@ class Spotify extends React.Component {
                 <div className="progress__bar" style={{width: String(Number((songDetails.progress_ms * 100) / songDetails.item.duration_ms)+'%')}}></div>
               </div>
               <div className="icon-holder">
-                <FontAwesomeIcon icon={faPlayCircle} style={{fontSize:'85px'}} />
+                {playButton}
                 <FontAwesomeIcon icon={faArrowAltCircleRight} style={{fontSize:'85px'}} />
               </div>
             </div>
