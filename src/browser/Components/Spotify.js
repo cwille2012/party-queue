@@ -176,7 +176,7 @@ class Spotify extends React.Component {
       );
 
       var rightSideBar = (
-        <div class="col-lg-3 ds" id="sidebar">
+        <div class="col-lg-3 ds" id="sidebar" style={{width:'20%', height: '100%'}}>
           <h4 class="centered mt">RECENT ACTIVITY</h4>
           <div class="desc">
             <div class="thumb">
