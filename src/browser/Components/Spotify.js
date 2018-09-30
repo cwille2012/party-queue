@@ -319,7 +319,7 @@ class Spotify extends React.Component {
         return (
           <tr key={key}>
             <th>{key}</th>
-            <td>{alarm[key]}</td>
+            <td>{this.state.session[key]}</td>
           </tr>
         );
       });
