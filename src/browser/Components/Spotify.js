@@ -315,31 +315,33 @@ class Spotify extends React.Component {
 
     var sessionTable = null;
     if(!!this.state.session) {
-      var song = this.state.session
-      var sessionValues = Object.keys(song).map(function(key) {
-        return (
-          <tr key={key}>
-            <th>{key}</th>
-            <td>{song[key]}</td>
-          </tr>
-        );
-      });
-
+      
       sessionTable = (
-        <div className="row">
-          <table className="config-table">
-            <thead className="table-head">
-              <tr className="header-row">
-                <th style={{width: '50%'}}>Parameter</th>
-                <th style={{width: '50%'}}>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              { sessionValues }
-            </tbody>
-          </table>
-        </div>
+        <tbody>
+          {this.state.session.map(({ songId, name, score }) => (
+            <tr key={songId}> 
+              <td><a href={'/song/'+name}>{String(name)}</a></td>
+              <td><a href={'/song/'+name}>{String(score)}</a></td>
+            </tr>
+          ))}
+        </tbody>
       );
+
+      // sessionTable = (
+      //   <div className="row">
+      //     <table className="config-table">
+      //       <thead className="table-head">
+      //         <tr className="header-row">
+      //           <th style={{width: '50%'}}>Parameter</th>
+      //           <th style={{width: '50%'}}>Value</th>
+      //         </tr>
+      //       </thead>
+      //       <tbody>
+      //         { sessionValues }
+      //       </tbody>
+      //     </table>
+      //   </div>
+      // );
     }
 
     if (!!this.state.spotifyUser) {
