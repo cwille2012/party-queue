@@ -317,14 +317,24 @@ class Spotify extends React.Component {
     if(!!this.state.session) {
       
       sessionTable = (
-        <tbody>
-          {this.state.session.map(({ songId, name, score }) => (
-            <tr key={songId}> 
-              <td><a href={'/song/'+name}>{String(name)}</a></td>
-              <td><a href={'/song/'+name}>{String(score)}</a></td>
+      <div>
+        <table className="sensor-table">
+          <thead className="table-head">
+            <tr className="header-row">
+              <th>Name</th>
+              <th>Score</th>
             </tr>
-          ))}
-        </tbody>
+          </thead>
+          <tbody>
+            {this.state.session.map(({ songId, name, score }) => (
+              <tr key={songId}> 
+                <td><a href={'/song/'+name}>{String(name)}</a></td>
+                <td><a href={'/song/'+name}>{String(score)}</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
       );
 
       // sessionTable = (
