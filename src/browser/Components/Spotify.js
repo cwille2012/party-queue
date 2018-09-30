@@ -70,26 +70,26 @@ class Spotify extends React.Component {
 
     'http://api.partyqueso.com/party/<partyid>/queue'
 
-    fetch('http://api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'BQAEvg7ETeQqWEmRAMLV_lhQSSDnmnoWX4QjB-zzJf6ccsNgRu4oX7K0IcUSN2LDBIbzg36Hj4FDxBXPNbHB-9faSoAWM1JzkEKOdQQfkFD4hjGljZ7aj1ajjA0qOYHKM9APipyOENViIPd9a6yDwc9Y2kSenI5srw8h7R3pfL1Y7GouVFAay9V5h8Ur7NyC3LsgXoULNTBbaOe9t9mLSXVobscTtOeHFOZ4DAOhga_INVQ-W3RSqqa5rIpvQsUjJmtZRzhXB8ty5Ksl5UdnZHjEwQ'
-      }
-    })
-    .then(function(response) {
-      return response.json()
-    })
-    .then(jsonResponse => {
-      console.log(jsonResponse)
-      this.setState({
-        session: jsonResponse
-      })
-    }).catch (error => {
-      alert('Error: ' + error);
-      console.log(error);
-    })
+    // fetch('http://api.partyqueso.com/party/5bb0dd37b093135161f5f0a2/queue', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'BQAEvg7ETeQqWEmRAMLV_lhQSSDnmnoWX4QjB-zzJf6ccsNgRu4oX7K0IcUSN2LDBIbzg36Hj4FDxBXPNbHB-9faSoAWM1JzkEKOdQQfkFD4hjGljZ7aj1ajjA0qOYHKM9APipyOENViIPd9a6yDwc9Y2kSenI5srw8h7R3pfL1Y7GouVFAay9V5h8Ur7NyC3LsgXoULNTBbaOe9t9mLSXVobscTtOeHFOZ4DAOhga_INVQ-W3RSqqa5rIpvQsUjJmtZRzhXB8ty5Ksl5UdnZHjEwQ'
+    //   }
+    // })
+    // .then(function(response) {
+    //   return response.json()
+    // })
+    // .then(jsonResponse => {
+    //   console.log(jsonResponse)
+    //   this.setState({
+    //     session: jsonResponse
+    //   })
+    // }).catch (error => {
+    //   alert('Error: ' + error);
+    //   console.log(error);
+    // })
 
     this.state.spotifyPlayer.init();
   }
