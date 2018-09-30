@@ -205,9 +205,10 @@ app.get(
 
 //http://partyqueso.com/?code=AQCX5VXIpQiftnHgOKfcvczkRHUVwgl-EuAyoi6zXhJd-kBgVPQCdp_Lx7ObtjUZu4rJ2DQcMRhGyLlNpPAxIGRu1M65clPXeS4kis6rEpYF-8WpiAxoY8BAP8T4LLEcWgI6fBbmth4gRT9Sn2LK2Rm89B51Z4Bq8ZC57pmXkOxLz_7yHX5HIvvymfguEuNqfRUTwyT_53s0X_7WHn0E9grktdsh&state=some-state-of-my-choice
 app.get(
-  '/callback/playlist',
+  '/callback/playlist/:code',
   function(req, res) {
     console.log('HERE')
+    var code = req.params.code.split('?')[1];
 
     var credentials = {
       clientId: '9aa40bea0e1e40f4973294a79434da4b',
@@ -218,7 +219,7 @@ app.get(
     var spotifyApi = new SpotifyWebApi(credentials);
 
     spotifyApi
-      .authorizationCodeGrant('codefromcallback')
+      .authorizationCodeGrant(code)
       .then(function(data) {
         console.log(data)
         // Save the access token so that it's used in future requests
@@ -300,7 +301,7 @@ function generateAuthCode(scopes) {
   var clientId = '9aa40bea0e1e40f4973294a79434da4b';
   var state = 'some-state-of-my-choice';
   var spotifyApi = new SpotifyWebApi({
-    redirectUri: redirectUri+'/callback/playlist',
+    redirectUri: redirectUri+'/callback/playlist/',
     clientId: clientId
   });
   return(spotifyApi.createAuthorizeURL(scopes, state));
