@@ -175,115 +175,106 @@ class Spotify extends React.Component {
       </div>
       );
 
-      var activityList = (
-        <div>
-        <h4 class="centered mt">RECENT ACTIVITY</h4>
-        <div class="desc">
-          <div class="thumb">
-            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+      var rightSideBar = (
+        <div class="col-lg-3 ds">
+          <h4 class="centered mt">RECENT ACTIVITY</h4>
+          <div class="desc">
+            <div class="thumb">
+              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+            </div>
+            <div class="details">
+              <p>
+                <muted>Just Now</muted>
+                <br/>
+                <a href="#">Paul Rudd</a> purchased an item.<br/>
+              </p>
+            </div>
           </div>
-          <div class="details">
-            <p>
-              <muted>Just Now</muted>
-              <br/>
-              <a href="#">Paul Rudd</a> purchased an item.<br/>
-            </p>
+          <div class="desc">
+            <div class="thumb">
+              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+            </div>
+            <div class="details">
+              <p>
+                <muted>2 Minutes Ago</muted>
+                <br/>
+                <a href="#">James Brown</a> subscribed to your newsletter.<br/>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="desc">
-          <div class="thumb">
-            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+          <div class="desc">
+            <div class="thumb">
+              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+            </div>
+            <div class="details">
+              <p>
+                <muted>3 Hours Ago</muted>
+                <br/>
+                <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
+              </p>
+            </div>
           </div>
-          <div class="details">
-            <p>
-              <muted>2 Minutes Ago</muted>
-              <br/>
-              <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-            </p>
+          <div class="desc">
+            <div class="thumb">
+              <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+            </div>
+            <div class="details">
+              <p>
+                <muted>7 Hours Ago</muted>
+                <br/>
+                <a href="#">Brando Page</a> purchased a year subscription.<br/>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="desc">
-          <div class="thumb">
-            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-          </div>
-          <div class="details">
-            <p>
-              <muted>3 Hours Ago</muted>
-              <br/>
-              <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-            </p>
-          </div>
-        </div>
-        <div class="desc">
-          <div class="thumb">
-            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-          </div>
-          <div class="details">
-            <p>
-              <muted>7 Hours Ago</muted>
-              <br/>
-              <a href="#">Brando Page</a> purchased a year subscription.<br/>
-            </p>
-          </div>
-        </div>
-      </div>
-      );
-
-      var userList = (
-        <div>
           <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="" />
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">DIVYA MANIAN</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
+          <div class="desc">
+            <div class="thumb">
+              <img class="img-circle" src="img/ui-divya.jpg" width="35px" height="35px" align="" />
             </div>
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="" />
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">DJ SHERMAN</a><br/>
-                  <muted>I am Busy</muted>
-                </p>
-              </div>
+            <div class="details">
+              <p>
+                <a href="#">DIVYA MANIAN</a><br/>
+                <muted>Available</muted>
+              </p>
             </div>
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align=""/>
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">DAN ROGERS</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
+          </div>
+          <div class="desc">
+            <div class="thumb">
+              <img class="img-circle" src="img/ui-sherman.jpg" width="35px" height="35px" align="" />
             </div>
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align=""/>
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">Zac Sniders</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
+            <div class="details">
+              <p>
+                <a href="#">DJ SHERMAN</a><br/>
+                <muted>I am Busy</muted>
+              </p>
             </div>
+          </div>
+          <div class="desc">
+            <div class="thumb">
+              <img class="img-circle" src="img/ui-danro.jpg" width="35px" height="35px" align=""/>
+            </div>
+            <div class="details">
+              <p>
+                <a href="#">DAN ROGERS</a><br/>
+                <muted>Available</muted>
+              </p>
+            </div>
+          </div>
+          <div class="desc">
+            <div class="thumb">
+              <img class="img-circle" src="img/ui-zac.jpg" width="35px" height="35px" align=""/>
+            </div>
+            <div class="details">
+              <p>
+                <a href="#">Zac Sniders</a><br/>
+                <muted>Available</muted>
+              </p>
+            </div>
+          </div>
         </div>
-
       );
 
-      return activityList
-
-
-
+      return rightSideBar
 
 
     } else {
