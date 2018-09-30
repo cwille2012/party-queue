@@ -102,7 +102,7 @@ passport.use(
     },
     function(accessToken, refreshToken, expires_in, profile, done) {
       spotifyAccount = {
-        ...profile,
+        profile: profile,
         accessToken: accessToken,
         refreshToken: refreshToken,
         expires_in: expires_in
