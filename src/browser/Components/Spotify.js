@@ -14,10 +14,10 @@ class Spotify extends React.Component {
   }
 
   componentDidMount() {
-    var mainContainer = document.getElementById('js-main-container'),
-    var loginContainer = document.getElementById('js-login-container'),
-    var loginButton = document.getElementById('js-btn-login'),
-    var background = document.getElementById('js-background');
+    var mainContainer = document.getElementById('js-main-container')
+    var loginContainer = document.getElementById('js-login-container')
+    var loginButton = document.getElementById('js-btn-login')
+    var background = document.getElementById('js-background')
 
     //var spotifyPlayer = new SpotifyPlayer();
 
