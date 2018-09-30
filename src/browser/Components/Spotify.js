@@ -219,7 +219,8 @@ class Spotify extends React.Component {
       spotifyPlayer: new SpotifyPlayer(),
       spotifyUser: null,
       songDetails: null,
-      partyDisplay: false
+      partyDisplay: false,
+      session: null
     }
 
     this.state.spotifyPlayer.on('update', response => {
@@ -276,19 +277,15 @@ class Spotify extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': 'BQCWq6huix_Or-ZtwiMe2kwtZEol8SGQrX3HazlGRFOOLMUav_aOXtdnZBOAopoyCi1QzM6sVKwubZQtVdssv2InMpjnRnHfs_gRMx13IC4xtmhdSIdSFP0Dx8Vr-5jX6QvK8vPOliBCXQm2Pw7evx12Uh5qeZo87JGQe3pQHwRpcL-b9_qixG42y4bmBMEfS251plJE3KKEwqP5lBFDl1J4cGHiW-lIm5vlsaxASPT3l1AQxkk08853ywXoVwFZlaTHHyCLpmr0L8PFsXbDZ8yvEQ'
-      },
-      body: JSON.stringify({
-        command: 'getUnseenAlarms'
-      })
+      }
     })
     .then(function(response) {
       return response.json()
     })
     .then(jsonResponse => {
+      console.log(jsonResponse)
       this.setState({
-        unseenAlarms: jsonResponse.alarms,
-        unseen: true,
-        loading: false
+        session: jsonResponse
       })
     }).catch (error => {
       alert('Error: ' + error);
