@@ -76,20 +76,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(function(req, res, next) {
-  if (!!req.url.code) {
-    console.log('CODE FOUND!')
-    console.log(req.url.code)
-  }
-    
-  if (req.url.includes('/?code=')) {
-    var code = req.url.split('?code=')[1];
-    console.log('CODE FOUND!')
-    console.log(code)
-  }
-  next()
-});
-
 //Spotify Authentication
 var passport = require('passport');
 app.use(passport.initialize());
@@ -217,8 +203,8 @@ app.get(
   '/callback/playlist/:code',
   function(req, res) {
     console.log('HERE')
-    var code = req.params.code.split('=')[1];
-    console.log(code)
+    // var code = req.params.code.split('=')[1];
+    // console.log(code)
 
     var credentials = {
       clientId: '9aa40bea0e1e40f4973294a79434da4b',
@@ -229,7 +215,7 @@ app.get(
     var spotifyApi = new SpotifyWebApi(credentials);
 
     spotifyApi
-      .authorizationCodeGrant(code)
+      .authorizationCodeGrant('AQCNpmL4wMBpKaWuWfC8D59IN_JgIK9_aiZq2qhdbU4s3aMEE1mJKcz9ermh6SstOTp3u20JK1lJtJHbT8ybP-NrZqI7yJVWjbLgIs_xaiz7QXpo0hBCgbW4YInBHWV-S-5hjKToS0kHTvkBx2vqeiZxryenMaF53vqSsosVpB32SDTs3FVwrvNMVOPl2bUAjBb1rOyJt4Ilyy3flFCLJXJXBzK-Pg')
       .then(function(data) {
         console.log(data)
         // Save the access token so that it's used in future requests
