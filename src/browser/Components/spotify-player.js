@@ -167,3 +167,5 @@ class SpotifyPlayer {
     return this.fetchGeneric('https://api.spotify.com/v1/me').then(data => data.json());
   }
 }
+
+export default SpotifyPlayer
