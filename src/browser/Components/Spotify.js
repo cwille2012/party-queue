@@ -22,6 +22,8 @@ class Spotify extends React.Component {
       console.log(response.progress_ms)
       this.setState({
         songDetails: response
+      }, function(){
+        this.forceUpdate();
       });
     });
 
@@ -31,6 +33,8 @@ class Spotify extends React.Component {
       console.log('logging in')
       this.setState({
         spotifyUser: user
+      }, function(){
+        this.forceUpdate();
       });
     });
   }
