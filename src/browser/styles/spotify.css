@@ -124,4 +124,10 @@
 
   .icon {
       margin-right: 20px;
+      cursor: pointer;
+  }
+
+  .icon:hover {
+      font-size: 85px;
+      transition: 100ms;
   }
