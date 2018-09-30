@@ -129,5 +129,5 @@
 
   .icon:hover {
       font-size: 95px;
-      transition: 100ms;
+      transition: font-size 100ms;
   }
