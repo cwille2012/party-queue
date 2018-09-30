@@ -360,6 +360,7 @@ class Spotify extends React.Component {
         songContainer = (
           
             <div className="main-wrapper" style={{height:'100%'}}>
+            <div>
               <div className="now-playing__img">
                 <img src={songDetails.item.album.images[0].url} />
               </div>
@@ -374,7 +375,8 @@ class Spotify extends React.Component {
                   {playButton}
                   <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
                 </div>
-              </div><br/>
+                </div>
+              </div>
               {sessionTable}
             </div>
             
