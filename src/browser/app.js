@@ -20,7 +20,7 @@ var mainStyle = require('./styles/main.css');
 var loginStyle = require('./styles/login.css');
 console.log('app')
 let appId = 'partyqueue-vdayw';
-let redirectUrl = 'https://655816e4.ngrok.io/callback';
+let redirectUrl = 'http://partyqueso.com/callback';
 const client = Stitch.initializeDefaultAppClient(appId);
 const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('partyqueue');
 
@@ -145,14 +145,25 @@ class Root extends Component {
 
 
     var page;
-    if (request == '' || request == 'home') {
-      if (loggedIn === true) { page = (<Home viewport={viewport} client={client} />) } else { page = loginPage }
-      } else if (request == 'account') { if (loggedIn === true) { page = (<Account viewport={viewport} client={client} user={user} />) } else { page = loginPage }
-      } else if (request == 'host') { if (loggedIn === true) { page = (<Host viewport={viewport} client={client} user={user} />) } else { page = loginPage }
-      } else if (request.includes('callback')) {
-        page = (<Authorize viewport={viewport} client={client} Stitch={Stitch} />);
+
+    if ((request == '' || request == 'home') && loggedIn === true) {
+      page = (<Home viewport={viewport} client={client} />)
+    } else if (request == 'account' && loggedIn === true) { 
+      page = (<Account viewport={viewport} client={client} user={user} />);
+    } else if (request == 'host' && loggedIn === true) {
+      page = (<Host viewport={viewport} client={client} user={user} />);
+    } else if (request == 'join' && loggedIn === true) {
+      page = (<Join viewport={viewport} client={client} user={user} />);
+    } else if (request == 'spotify' && loggedIn === true) {
+      page = (<Spotify viewport={viewport} client={client} user={user} />);
+    } else if (request.includes('callback')) {
+      page = (<Authorize viewport={viewport} client={client} Stitch={Stitch} />);
     } else {
-      page = (<NotFound viewport={viewport} />);
+      if (loggedIn === true) {
+        page = (<NotFound viewport={viewport} />);
+      } else {
+        page = loginPage;
+      }
     }
 
     return (

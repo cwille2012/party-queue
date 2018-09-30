@@ -12,7 +12,7 @@ After=network.target
 Type=simple
 User=root
 Environment=SERVER_PORT=80
-Environment=DATABASE_URL='mongodb://admin:RJCPVTPREEJYKKUN@portal-ssl225-37.bmix-dal-yp-43b98459-c03d-40ab-b561-8ce061fa772e.4277083010.composedb.com:58883,portal-ssl229-38.bmix-dal-yp-43b98459-c03d-40ab-b561-8ce061fa772e.4277083010.composedb.com:58883/compose?authSource=admin&ssl=true'
+Environment=DATABASE_URL='mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass'
 ExecStart=/usr/bin/node /party-queue/build/server.js
 Restart=on-failure
 WorkingDirectory=/party-queue

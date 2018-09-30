@@ -13,13 +13,16 @@
 // * url
 // * url/callback
 // * url/auth/spotify/callback
+// Twlio API: (https://www.twilio.com/console/phone-numbers/PN17fcbf2f99edc2eb05e4e3dbc4ee5d72)
+// * url/phonecall
+// * url/textmessage
 
 //Initilize Server
 const path = require('path');
 const express = require('express');
 const app = express();
 
-var callbackUrl = 'https://655816e4.ngrok.io';
+var callbackUrl = 'http://partyqueso.com';
 
 //Custom Middleware
 app.use(function (req, res, next) {
@@ -102,9 +105,10 @@ app.get(
 
 app.get(
   '/spotify',
-  function(req, res) {
+  function(req, res, next) {
     if (spotifyAccount) {
-      res.status(200).send(spotifyAccount)
+      res.spotify = spotifyAccount;;
+      next();
     } else {
       res.redirect('/host');
     }
