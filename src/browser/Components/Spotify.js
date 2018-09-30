@@ -377,7 +377,6 @@ class Spotify extends React.Component {
               </div>
             </div>
             <div className="background" style={{backgroundImage: String(songDetails.item.album.images[0].url)}}></div>
-            {sessionTable}
           </div>
         );
       } else {
@@ -396,6 +395,7 @@ class Spotify extends React.Component {
       <div className="container" style={spotifyStyle}>
         {loginContainer}
         {songContainer}
+        {sessionTable}
       </div>
     );
     
