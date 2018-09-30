@@ -212,13 +212,16 @@ app.get(
     
     var playlistId;
 
-    
-
-request.get('https://someplace',options,function(err,res,body){
-  if(err) //TODO: handle err
-  if(res.statusCode !== 200 ) //etc
-  //TODO Do something with response
-});
+    request.get(authorizationCode, {},function(err, res, body){
+      if (err) {
+        console.log(err.message);
+      } else if(res.statusCode !== 200 ) {
+        console.log('Error: ' + res.statusCode);
+      } else {
+        console.log(body);
+        
+      }
+    });
 
     //res.redirect(authorizationCode);
     
