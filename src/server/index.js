@@ -124,7 +124,10 @@ app.get(
   passport.authenticate('spotify', { failureRedirect: '/host' }),
   function(req, res) {
     if (spotifyAccount) {
-      res.spotify = spotifyAccount;
+      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true });
+      // .then(result => {
+      //   next();
+      // });
     }
     res.redirect('/spotify');
   }
@@ -134,10 +137,11 @@ app.get(
   '/spotify',
   function(req, res, next) {
     if (spotifyAccount) {
-      userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true })
-      .then(result => {
-        next();
-      });
+      // userCollection.updateOne({ owner_id: req.owner_id }, { $set: { spotify: spotifyAccount } }, { upsert: true })
+      // .then(result => {
+      //   next();
+      // });
+      next();
     } else {
       res.redirect('/host');
     }
