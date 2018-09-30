@@ -77,7 +77,7 @@ class Spotify extends React.Component {
               </div>
             </div>
           </div>
-          <div className="background" style={{backgroundImage: String(url(songDetails.item.album.images[0].url))}}></div>
+          <div className="background" style={{backgroundImage: String(songDetails.item.album.images[0].url)}}></div>
         </div>
         );
       } else {
