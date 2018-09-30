@@ -350,6 +350,18 @@ function generateAuthCode(scopes) {
   ApiVersion: '2010-04-01' }
 */
 
+app.post(
+  '/textmessage',
+  function(req, res, next) {
+    //for num of pics
+    var textData = {
+
+    };
+    console.log(req.body)
+    res.send('OK');
+  }
+);
+
 //Custom Middleware
 app.use(function (req, res, next) {
   res.sendfile('./build/index.html');
