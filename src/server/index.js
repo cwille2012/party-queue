@@ -157,78 +157,47 @@ app.get(
   function(req, res) {
     var scopes = ['playlist-modify-public'];
     var clientId = '9aa40bea0e1e40f4973294a79434da4b';
+    var clientSecret = '8e7e1113a8434baca630c02abb67bb66';
     var state = 'some-state-of-my-choice';
 
-    // Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
     var spotifyApi = new SpotifyWebApi({
-      redirectUri: callbackUrl,
-      clientId: clientId
+      //redirectUri: callbackUrl,
+      clientId: clientId,
+      clientSecret: clientSecret
     });
 
-    // Create the authorization URL
-    var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
+    spotifyApi.clientCredentialsGrant().then(
+      function(data) {
+        console.log('The access token expires in ' + data.body['expires_in']);
+        console.log('The access token is ' + data.body['access_token']);
+    
+        // Save the access token so that it's used in future calls
+        spotifyApi.setAccessToken(data.body['access_token']);
+      },
+      function(err) {
+        console.log('Something went wrong when retrieving an access token', err);
+      }
+    );
 
-    console.log(authorizeURL);
+    // var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
+    // console.log(authorizeURL);
 
-    var authorizationCode = authorizeURL;
+    // spotifyApi
+    //   .authorizationCodeGrant(authorizeURL)
+    //   .then(function(data) {
+    //     console.log(data)
 
-    var playlistId;
+    //     spotifyApi.setAccessToken(data['access_token']);
 
-    // First retrieve an access token
-    spotifyApi
-      .authorizationCodeGrant(authorizationCode)
-      .then(function(data) {
-        console.log(data)
-        // Save the access token so that it's used in future requests
-        spotifyApi.setAccessToken(data['access_token']);
-
-        // Create a playlist
-        return spotifyApi.createPlaylist(
-          'chr154k',
-          'My New Awesome Playlist'
-        );
-      })
-      .then(function(data) {
-        console.log('Ok. Playlist created!');
-        playlistId = data.body['id'];
-
-        // Add tracks to the playlist
-        return spotifyApi.addTracksToPlaylist('chr154k', playlistId, [
-          'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
-          'spotify:track:6tcfwoGcDjxnSc6etAkDRR',
-          'spotify:track:4iV5W9uYEdYUVa79Axb7Rh'
-        ]);
-      })
-      .then(function(data) {
-        console.log('Ok. Tracks added!');
-
-        // Woops! Made a duplicate. Remove one of the duplicates from the playlist
-        return spotifyApi.removeTracksFromPlaylist('chr154k', playlistId, [
-          {
-            uri: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
-            positions: [0]
-          }
-        ]);
-      })
-      .then(function(data) {
-        console.log('Ok. Tracks removed!');
-
-        // Actually, lets just replace all tracks in the playlist with something completely different
-        return spotifyApi.replaceTracksInPlaylist('chr154k', playlistId, [
-          'spotify:track:5Wd2bfQ7wc6GgSa32OmQU3',
-          'spotify:track:4r8lRYnoOGdEi6YyI5OC1o',
-          'spotify:track:4TZZvblv2yzLIBk2JwJ6Un',
-          'spotify:track:2IA4WEsWAYpV9eKkwR2UYv',
-          'spotify:track:6hDH3YWFdcUNQjubYztIsG'
-        ]);
-      })
-      .then(function(data) {
-        console.log('Ok. Tracks replaced!');
-      })
-      .catch(function(err) {
-        console.log(err.message);
-        console.log('Something went wrong!');
-      });
+    //     return spotifyApi.createPlaylist(
+    //       'chr154k',
+    //       'My New Awesome Playlist'
+    //     );
+    //   })
+    //   .catch(function(err) {
+    //     console.log(err.message);
+    //     console.log('Something went wrong!');
+    //   });
   }
 );
 
