@@ -207,7 +207,7 @@ app.post(
 
 //Custom Middleware
 app.use(function (req, res, next) {
-  res.sendfile('./build/index.html', {name: 'test'});
+  res.sendfile('./build/index.html');
 });
 
 const port = process.env.SERVER_PORT || 80;
