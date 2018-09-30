@@ -124,7 +124,8 @@ app.get(
       'playlist-modify-private',
       'playlist-modify-public',
       'playlist-read-private'
-    ]
+    ],
+    showDialog: true
   }),
   function(req, res) {
     if (spotifyAccount) {
