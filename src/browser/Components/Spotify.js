@@ -17,9 +17,8 @@ class Spotify extends React.Component {
       loginContainer: null,
       spotifyUser: null
     }
-  }
 
-  componentDidMount() {
+
     this.state.spotifyPlayer.on('update', response => {
       console.log('updating')
       console.log(response.progress_ms)
@@ -42,7 +41,9 @@ class Spotify extends React.Component {
       </div>
       )
     });
-    
+
+
+
     this.state.spotifyPlayer.on('login', user => {
       console.log('logging in')
       this.state.spotifyUser = user;
@@ -58,6 +59,10 @@ class Spotify extends React.Component {
       }
     });
 
+
+  }
+
+  componentDidMount() {
     if (!this.state.spotifyUser){
       if (!!document.getElementById('js-btn-login'))
       document.getElementById('js-btn-login').addEventListener('click', () => {
@@ -67,6 +72,7 @@ class Spotify extends React.Component {
     
     this.state.spotifyPlayer.init();
   }
+  
 
   render() {
     var {viewport} = this.props;
@@ -84,3 +90,4 @@ class Spotify extends React.Component {
 }
 
 export default Spotify
+
