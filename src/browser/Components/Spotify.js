@@ -82,6 +82,7 @@ class Spotify extends React.Component {
       return response.json()
     })
     .then(jsonResponse => {
+      console.log(jsonResponse)
       this.setState({
         session: jsonResponse
       })
@@ -111,7 +112,7 @@ class Spotify extends React.Component {
     if (!!this.state.spotifyUser) {
       if (this.state.partyDisplay == true) {
         if (!!this.state.session) {
-          var songValues = Object.keys(this.state.session.queue).map(function(key) {
+          var songValues = Object.keys(this.state.session).map(function(key) {
             return (
               <tr key={key}>
                 <th>{key}</th>
