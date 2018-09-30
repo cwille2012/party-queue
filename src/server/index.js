@@ -155,7 +155,7 @@ var SpotifyWebApi = require('spotify-web-api-node');
 app.get(
   '/spotifytest',
   function(req, res) {
-    var scopes = ['user-read-private', 'user-read-email', 'playlist-modify-private', 'playlist-modify', 'playlist-read-private'];
+    var scopes = ['playlist-modify-public'];
     var clientId = '5fe01282e44241328a84e7c5cc169165';
     var state = 'some-state-of-my-choice';
 
