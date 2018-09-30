@@ -13,53 +13,26 @@ class Spotify extends React.Component {
       user: user,
       client: client,
       spotifyPlayer: new SpotifyPlayer(),
-      mainContainer: null,
-      loginContainer: null,
-      spotifyUser: null
+      spotifyUser: null,
+      songDetails: null
     }
-
 
     this.state.spotifyPlayer.on('update', response => {
       console.log('updating')
       console.log(response.progress_ms)
-      this.state.mainContainer = (
-        <div style={{height:'100%'}}>
-        <div className="main-wrapper" style={{height:'100%'}}>
-          <div className="now-playing__img">
-            <img src="${response.item.album.images[0].url}" />
-          </div>
-          <div className="now-playing__side">
-            <div className="now-playing__name">{response.item.name}</div>
-            <div className="now-playing__artist">{response.item.artists[0].name}</div>
-            <div className="now-playing__status">{response.is_playing ? 'Playing' : 'Paused'}</div>
-            <div className="progress">
-              <div className="progress__bar" style="width:${response.progress_ms * 100 / response.item.duration_ms}%"></div>
-            </div>
-          </div>
-        </div>
-        <div className="background" style="background-image:url(${response.item.album.images[0].url})"></div>
-      </div>
-      )
+      this.setState({
+        songDetails: response
+      });
     });
 
 
 
     this.state.spotifyPlayer.on('login', user => {
       console.log('logging in')
-      this.state.spotifyUser = user;
-      if (user === null) {
-        this.state.loginContainer = (
-          <div className="login-container" id="js-login-container">
-            <input type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
-          </div>
-        );
-        this.state.mainContainer = null;
-      } else {
-        this.state.loginContainer = null;
-      }
+      this.setState({
+        spotifyUser: user
+      });
     });
-
-
   }
 
   componentDidMount() {
@@ -75,14 +48,50 @@ class Spotify extends React.Component {
   
 
   render() {
-    var {viewport} = this.props;
-    var {user} = this.state;
+    var {songDetails} = this.state;
+
+    var songContainer = null;
+    var loginContainer = null;
+
+
+    if (!!this.state.spotifyUser) {
+      loginContainer = null;
+      songContainer = (
+        <div style={{height:'100%'}}>
+        <div className="main-wrapper" style={{height:'100%'}}>
+          <div className="now-playing__img">
+            <img src={songDetails.item.album.images[0].url} />
+          </div>
+          <div className="now-playing__side">
+            <div className="now-playing__name">{songDetails.item.name}</div>
+            <div className="now-playing__artist">{songDetails.item.artists[0].name}</div>
+            <div className="now-playing__status">{songDetails.is_playing ? 'Playing' : 'Paused'}</div>
+            <div className="progress">
+              <div className="progress__bar" style={{width: String((songDetails.progress_ms * 100) / songDetails.item.duration_ms)}}></div>
+            </div>
+          </div>
+        </div>
+        <div className="background" style={{backgroundImage: String(url(songDetails.item.album.images[0].url))}}></div>
+      </div>
+      );
+    } else {
+      songContainer = null;
+      loginContainer = (
+        <div className="login-container" id="js-login-container">
+          <input type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
+        </div>
+      );
+    }
+
+
+
+
 
     var spotify = (
       <div className="container" style={spotifyStyle}>
-        {this.state.loginContainer}
-        {this.state.mainContainer}
-       </div>
+        {loginContainer}
+        {songContainer}
+      </div>
     );
     
     return spotify
