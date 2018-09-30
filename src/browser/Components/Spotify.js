@@ -42,7 +42,7 @@ class Spotify extends React.Component {
       this.state.spotifyPlayer.login();
     });
     
-    spotifyPlayer.init();
+    this.state.spotifyPlayer.init();
   }
 
   template(data) {
