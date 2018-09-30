@@ -122,6 +122,7 @@ app.get(
       'user-read-email',
       'user-read-private',
       'playlist-modify-private',
+      'playlist-modify-public',
       'playlist-read-private'
     ]
   }),
