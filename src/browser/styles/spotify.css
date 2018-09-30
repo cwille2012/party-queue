@@ -128,6 +128,9 @@
   }
 
   .icon:hover {
-      font-size: 95px;
-      transition: font-size 100ms;
+        font-size: 95px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
   }
