@@ -63,6 +63,7 @@
   }
   
   .now-playing__side {
+    margin-top: 20px;
     margin-left: 5%;
     width: 45%;
   }
@@ -115,4 +116,12 @@
   
   .main-container {
     flex: 1;
+  }
+
+  .icon-holder {
+    margin-top: 20px;
+  }
+
+  .icon {
+      margin-right: 20px;
   }
