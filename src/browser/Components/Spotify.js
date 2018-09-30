@@ -12,7 +12,8 @@ class Spotify extends React.Component {
     this.state = {
       user: user,
       client: client,
-      spotifyPlayer: new SpotifyPlayer()
+      spotifyPlayer: new SpotifyPlayer(),
+      mainContainer: null
     }
   }
 
@@ -25,9 +26,10 @@ class Spotify extends React.Component {
     //var spotifyPlayer = new SpotifyPlayer();
 
     this.state.spotifyPlayer.on('update', response => {
-      mainContainer.innerHTML = (
+      console.log('updating')
+      mainContainer = (
         <div style={spotifyStyle}>
-        <div className="main-wrapper">
+        <div className="main-wrapper" style={{height:'100%'}}>
           <div className="now-playing__img">
             <img src="${response.item.album.images[0].url}" />
           </div>
@@ -71,7 +73,7 @@ class Spotify extends React.Component {
         <div className="login-container hidden" id="js-login-container">
           <button className="btn btn--login" id="js-btn-login">Login with Spotify</button>
         </div>
-        <div className="main-container hidden" id="js-main-container">
+          {{mainContainer}}
         </div>
       </div>
     );
