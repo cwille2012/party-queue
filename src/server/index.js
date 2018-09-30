@@ -161,7 +161,6 @@ app.get(
     var state = 'some-state-of-my-choice';
 
     var spotifyApi = new SpotifyWebApi({
-      //redirectUri: callbackUrl,
       clientId: clientId,
       clientSecret: clientSecret
     });
@@ -177,27 +176,35 @@ app.get(
       function(err) {
         console.log('Something went wrong when retrieving an access token', err);
       }
-    );
+    )
+    .then(
+      function(data) {
+        var spotifyApi = new SpotifyWebApi({
+          accessToken: 'njd9wng4d0ycwnn3g4d1jm30yig4d27iom5lg4d3'
+        });
+        spotifyApi.createPlaylist(
+          'chr154k',
+          'My New Awesome Playlist'
+        );
+      })
+      .then(function(data) {
+        console.log('Ok. Playlist created!');
+        var playlistId = data.body['id'];
+    
+        return spotifyApi.addTracksToPlaylist('thelinmichael', playlistId, [
+          'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
+          'spotify:track:6tcfwoGcDjxnSc6etAkDRR',
+          'spotify:track:4iV5W9uYEdYUVa79Axb7Rh'
+        ]);
+      })
+      .then(function(data) {
+        console.log('Ok. Tracks added!');
+      })
+      .catch(function(err) {
+        console.log(err.message);
+        console.log('Something went wrong!');
+      });
 
-    // var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);
-    // console.log(authorizeURL);
-
-    // spotifyApi
-    //   .authorizationCodeGrant(authorizeURL)
-    //   .then(function(data) {
-    //     console.log(data)
-
-    //     spotifyApi.setAccessToken(data['access_token']);
-
-    //     return spotifyApi.createPlaylist(
-    //       'chr154k',
-    //       'My New Awesome Playlist'
-    //     );
-    //   })
-    //   .catch(function(err) {
-    //     console.log(err.message);
-    //     console.log('Something went wrong!');
-    //   });
   }
 );
 
