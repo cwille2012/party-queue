@@ -66,7 +66,7 @@ class Spotify extends React.Component {
           <div style={{height:'100%'}}>
           <div className="main-wrapper" style={{height:'100%'}}>
             <div className="now-playing__img">
-              <img src={'songDetails.item.album.images[0].url'} />
+              <img src={songDetails.item.album.images[0].url} />
             </div>
             <div className="now-playing__side">
               <div className="now-playing__name">{songDetails.item.name}</div>
@@ -77,7 +77,7 @@ class Spotify extends React.Component {
               </div>
             </div>
           </div>
-          <div className="background" style={{backgroundImage: String(url('songDetails.item.album.images[0].url'))}}></div>
+          <div className="background" style={{backgroundImage: String(url(songDetails.item.album.images[0].url))}}></div>
         </div>
         );
       } else {
