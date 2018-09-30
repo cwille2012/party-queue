@@ -69,7 +69,7 @@
   
   /** Progress **/
   .progress {
-    border: 0.15em solid #eee;
+    border: 1px solid #eee;
     height: 1em;
   }
   
