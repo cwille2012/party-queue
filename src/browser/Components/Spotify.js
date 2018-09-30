@@ -74,6 +74,7 @@ class Spotify extends React.Component {
         <div className="background" style={{backgroundImage: String(url(songDetails.item.album.images[0].url))}}></div>
       </div>
       );
+      console.log(songContainer)
     } else {
       songContainer = null;
       loginContainer = (
@@ -82,10 +83,6 @@ class Spotify extends React.Component {
         </div>
       );
     }
-
-
-
-
 
     var spotify = (
       <div className="container" style={spotifyStyle}>
