@@ -375,6 +375,7 @@ class Spotify extends React.Component {
                   <FontAwesomeIcon className="icon" icon={faArrowAltCircleRight} style={{fontSize:'85px'}} onClick={this.skip} />
                 </div>
               </div>
+              {sessionTable}
             </div>
             
         );
@@ -394,7 +395,6 @@ class Spotify extends React.Component {
       <div className="container" style={spotifyStyle}>
         {loginContainer}
         {songContainer}
-        {sessionTable}
       </div>
     );
     
