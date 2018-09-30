@@ -59,10 +59,12 @@ class Spotify extends React.Component {
     var loginContainer = null;
 
     var playButton;
-    if (songDetails.is_playing == true) {
-      playButton = (<FontAwesomeIcon icon={faPauseCircle} style={{fontSize:'85px'}} />);
-    } else {
-      playButton = (<FontAwesomeIcon icon={faPlayCircle} style={{fontSize:'85px'}} />);
+    if(!!songDetails) {
+      if (songDetails.is_playing == true) {
+        playButton = (<FontAwesomeIcon icon={faPauseCircle} style={{fontSize:'85px'}} />);
+      } else {
+        playButton = (<FontAwesomeIcon icon={faPlayCircle} style={{fontSize:'85px'}} />);
+      }
     }
 
 
