@@ -94,7 +94,7 @@ class Spotify extends React.Component {
       songContainer = null;
       loginContainer = (
         <div className="login-container" id="js-login-container">
-          <input style={{zIndex:'5'}} type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
+          <input type="button" className="btn btn--login" id="js-btn-login" value="Login with Spotify" />
         </div>
       );
     }
@@ -103,7 +103,7 @@ class Spotify extends React.Component {
       <div className="container" style={spotifyStyle}>
         {loginContainer}
         {songContainer}
-        <input type="button" className="btn btn--login" value="Get History" onClick={this.getHistory} />
+        <input type="button" style={{zIndex:'5'}} className="btn btn--login" value="Get History" onClick={this.getHistory} />
       </div>
     );
     
