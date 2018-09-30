@@ -11,7 +11,6 @@ import {
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Home from './Components/Home';
-import Host from './Components/Host';
 import Account from './Components/Account';
 import Authorize from './Components/Authorize';
 import Join from './Components/Join';
@@ -113,8 +112,6 @@ class Root extends Component {
       page = (<Home viewport={viewport} client={client} />)
     } else if (request == 'account' && loggedIn === true) { 
       page = (<Account viewport={viewport} client={client} user={user} />);
-    } else if (request == 'host' && loggedIn === true) {
-      page = (<Host viewport={viewport} client={client} user={user} />);
     } else if (request == 'join' && loggedIn === true) {
       page = (<Join viewport={viewport} client={client} user={user} />);
     } else if (request == 'spotify' && loggedIn === true) {

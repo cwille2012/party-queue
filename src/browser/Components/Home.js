@@ -16,7 +16,7 @@ class Home extends React.Component {
           <h2>PartyQueue</h2>
 
           <div className='hostbuttonholder'>
-            <input type='button' className='hostbutton' onClick={() => window.location="/host"} value='Start a Party' />
+            <input type='button' className='hostbutton' onClick={() => window.location="/spotify"} value='Start a Party' />
             <input type='button' className='hostbutton' onClick={() => window.location="/join"} value='Join a Party' />
           </div>
           
