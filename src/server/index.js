@@ -88,9 +88,9 @@ passport.use(
 );
 
 //Custom routes for Spotify authentication
-app.get('/auth/spotify', passport.authenticate('spotify'), function(req, res) {
-
-});
+app.get('/auth/spotify', 
+  passport.authenticate('spotify'), function(req, res) {}
+);
 
 app.get(
   '/auth/spotify/callback',
@@ -113,11 +113,10 @@ app.get(
 
 //Custom Middleware
 app.use(function (req, res, next) {
-  //return res.sendFile(path.join(__dirname, './index.html'));
   res.sendfile('./build/index.html');
 });
 
-const port = process.env.PORT || 9600;
+const port = process.env.SERVER_PORT || 9600;
 
 app.listen(port, () => {
   console.log(`Server is running on port: ` + port);

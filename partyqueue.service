@@ -1,0 +1,21 @@
+# Put this as first line in main js file: #!/usr/bin/env node
+# Make a symlink: systemctl enable /full/path/to/<appname.service>
+# If this file is edited: systemctl daemon-reload
+# Start: systemctl start <appname>
+# Stop: systemctl stop <appname>
+# See logs: journalctl -u <appname>
+[Unit]
+Description=PartyQueue Dashboard
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Environment=SERVER_PORT=80
+Environment=DATABASE_URL='mongodb://admin:RJCPVTPREEJYKKUN@portal-ssl225-37.bmix-dal-yp-43b98459-c03d-40ab-b561-8ce061fa772e.4277083010.composedb.com:58883,portal-ssl229-38.bmix-dal-yp-43b98459-c03d-40ab-b561-8ce061fa772e.4277083010.composedb.com:58883/compose?authSource=admin&ssl=true'
+ExecStart=/usr/bin/node /party-queue/build/server.js
+Restart=on-failure
+WorkingDirectory=/party-queue
+
+[Install]
+WantedBy=multi-user.target

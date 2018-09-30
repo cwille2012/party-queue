@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 import {
   Stitch,
@@ -13,13 +13,14 @@ import Footer from './Components/Footer';
 import Home from './Components/Home';
 import Host from './Components/Host';
 import Account from './Components/Account';
+import Authorize from './Components/Authorize';
 import NotFound from './Components/NotFound';
 
 var mainStyle = require('./styles/main.css');
 var loginStyle = require('./styles/login.css');
-
+console.log('app')
 let appId = 'partyqueue-vdayw';
-let redirectUrl = 'https://655816e4.ngrok.io';
+let redirectUrl = 'https://655816e4.ngrok.io/callback';
 const client = Stitch.initializeDefaultAppClient(appId);
 const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('partyqueue');
 
@@ -94,7 +95,7 @@ class Root extends Component {
     } else if (method == 'google') {
       credential = new GoogleRedirectCredential(redirect);
     } else {
-      alert ('Error: Invalid authentication method');
+      alert('Error: Invalid authentication method');
     }
     if (!!credential) {
       Stitch.defaultAppClient.auth.loginWithRedirect(credential);
@@ -102,7 +103,7 @@ class Root extends Component {
   }
 
   render() {
-    const {viewport, request} = this.state;
+    const { viewport, request } = this.state;
 
     var loggedIn = Stitch.defaultAppClient.auth.isLoggedIn;
 
@@ -141,49 +142,19 @@ class Root extends Component {
         </div>
       </div>
     );
-    
+
 
     var page;
     if (request == '' || request == 'home') {
-      if (loggedIn === true) {
-        page = (<Home viewport={viewport} client={client} />);
-      } else {
-        page = loginPage;
-      }
-    } else if (request == 'account') {
-      if (loggedIn === true) {
-        page = (<Account viewport={viewport} client={client} user={user} />);
-      } else {
-        page = loginPage;
-      }
-    } else if (request == 'host') {
-      if (loggedIn === true) {
-        page = (<Host viewport={viewport} client={client} user={user} />);
-      } else {
-        page = loginPage;
-      }
+      if (loggedIn === true) { page = (<Home viewport={viewport} client={client} />) } else { page = loginPage }
+      } else if (request == 'account') { if (loggedIn === true) { page = (<Account viewport={viewport} client={client} user={user} />) } else { page = loginPage }
+      } else if (request == 'host') { if (loggedIn === true) { page = (<Host viewport={viewport} client={client} user={user} />) } else { page = loginPage }
+      } else if (request.includes('callback')) {
+        page = (<Authorize viewport={viewport} client={client} Stitch={Stitch} />);
     } else {
-      if (request.charAt(0) == '#') {
-        client.auth.handleRedirectResult(request)
-          .then(user => {
-            return user.profile.data
-          })
-          .then(result => {
-            db.collection('users').updateOne({owner_id: client.auth.user.id}, {$set:{user: result}}, {upsert:true});
-            window.location = '/';
-          })
-        if (loggedIn === true) {
-          page = (<Home viewport={viewport} />);
-        } else {
-          page = loginPage;
-        }
-      } else if (request.charAt(0) == '?') {
-        console.log(request)
-      } else {
-        page = (<NotFound viewport={viewport} />);
-      }
+      page = (<NotFound viewport={viewport} />);
     }
-    
+
     return (
       <div style={mainStyle}>
         <Header viewport={viewport} user={user} />
