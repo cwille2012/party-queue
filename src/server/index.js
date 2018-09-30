@@ -199,35 +199,20 @@ app.get(
 );
 
 app.get(
-  '/makeplaylist',
+  '/callback/playlist',
   function(req, res) {
+    console.log('HERE')
 
-    var authorizationCode = generateAuthCode(['playlist-modify-public']);
-
-    var spotifyApi = new SpotifyWebApi({
+    var credentials = {
       clientId: '9aa40bea0e1e40f4973294a79434da4b',
       clientSecret: '8e7e1113a8434baca630c02abb67bb66',
       redirectUri: callbackUrl
-    });
+    };
     
-    var playlistId;
+    var spotifyApi = new SpotifyWebApi(credentials);
 
-    request.get(authorizationCode, {},function(err, res, body){
-      if (err) {
-        console.log(err.message);
-      } else if(res.statusCode !== 200 ) {
-        console.log('Error: ' + res.statusCode);
-      } else {
-        console.log(body);
-        
-      }
-    });
-
-    //res.redirect(authorizationCode);
-    
-    // First retrieve an access token
     spotifyApi
-      .authorizationCodeGrant(authorizationCode)
+      .authorizationCodeGrant('codefromcallback')
       .then(function(data) {
         console.log(data)
         // Save the access token so that it's used in future requests
@@ -282,6 +267,27 @@ app.get(
         console.log('Something went wrong!');
         res.status(400).send(err.message);
       });
+  }
+);
+
+app.get(
+  '/makeplaylist',
+  function(req, res) {
+
+    var authorizationCode = generateAuthCode(['playlist-modify-public']);
+
+    var spotifyApi = new SpotifyWebApi({
+      clientId: '9aa40bea0e1e40f4973294a79434da4b',
+      clientSecret: '8e7e1113a8434baca630c02abb67bb66',
+      redirectUri: callbackUrl+'/callback/playlist'
+    });
+    
+    var playlistId;
+
+    res.redirect(authorizationCode);
+    
+    // First retrieve an access token
+    
 
   
   }
