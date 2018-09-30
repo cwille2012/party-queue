@@ -31,12 +31,9 @@ var callbackUrl = 'http://partyqueso.com';
 
 var userCollection;
 MongoClient.connect('mongodb://chriswoodle:XEVEUVejMqM8gXCY@stitch.mongodb.com:27020/?authMechanism=PLAIN&authSource=%24external&ssl=true&appName=partyqueue-vdayw:mongodb-atlas:local-userpass', { useNewUrlParser: true }, (err, client) => {
+  if (err) console.log(err);
   console.log('Connected to mongodb');
   userCollection = client.db().collection('users');
-}).catch(err => {
-  console.log('Error connecting to mongodb!');
-  console.log(err);
-  process.exit(1);
 });
 
 //Custom Middleware
