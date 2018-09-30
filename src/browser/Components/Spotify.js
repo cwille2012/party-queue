@@ -51,6 +51,7 @@ class Spotify extends React.Component {
   }
 
   getHistory() {
+    console.log('GETTING HISTORY')
     console.log(this.state.spotifyPlayer.history())
   }
   
