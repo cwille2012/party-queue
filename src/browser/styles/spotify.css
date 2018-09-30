@@ -92,14 +92,18 @@
   }
   
   .main-wrapper {
+    position: fixed; 
+    top: 45%; 
+    left: 50%; 
+    margin-left: auto; 
+    margin-right: auto;
     align-items: center;
     display: flex;
     height: 100%;
-    margin: 0 auto;
     justify-content: center;
-    position: relative;
     width: 80%;
     z-index: 1;
+    -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);
   }
   
   .container {
